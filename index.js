@@ -6,6 +6,7 @@ const path = require("path")
 const PORT = 8000 || process.env.PORT
 
 const userRouter = require("./routes/user")
+const memberRouter = require("./routes/member")
 
 connectMongo('mongodb://127.0.0.1:27017/AppTeam')
 .then(() => console.log("MongoDB connected"))
@@ -21,5 +22,6 @@ app.get('/', (req, res) => {
 })
 
 app.use("/user", userRouter)
+app.use("/member", memberRouter)
 
 app.listen(PORT, () => console.log(`Server started at port ${PORT}`))
