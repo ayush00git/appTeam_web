@@ -1,367 +1,447 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>App Team</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;500;700&display=swap" rel="stylesheet"> 
-    <link href="https://fonts.googleapis.com/css2?family=Gasoek+One&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Gasoek+One&display=swap"
+      rel="stylesheet"
+    />
     <style>
-		* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
 
-body {
-    font-family: 'ubuntu', sans-serif !important;
-    background: linear-gradient(180deg, #140b29 0%, #140b29 60%, #a594f9 60%, #a594f9 100%);
-    min-height: 100vh;
-    overflow-x: hidden;
-}
+      body {
+        font-family: "ubuntu", sans-serif !important;
+        background: linear-gradient(
+          180deg,
+          #140b29 0%,
+          #140b29 60%,
+          #a594f9 60%,
+          #a594f9 100%
+        );
+        min-height: 100vh;
+        overflow-x: hidden;
+      }
 
-.container {
-    width: 100%;
-    min-height: 100vh;
-}
+      .container {
+        width: 100%;
+        min-height: 100vh;
+      }
 
-/* Hero Section */
-.hero-section {
-    height: 60vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    padding: 0 2rem;
-}
+      /* Hero Section */
+      .hero-section {
+        height: 60vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        padding: 0 2rem;
+      }
 
-.hero-content {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    width: 100%;
-    max-width: 1200px;
-    gap: 4rem;
-}
+      .hero-content {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+        max-width: 1200px;
+        gap: 4rem;
+      }
 
-.hero-text {
-    flex: 1;
-    animation: slideInLeft 1s ease-out;
-}
+      .hero-text {
+        flex: 1;
+        animation: slideInLeft 1s ease-out;
+      }
 
-.app-team-title {
-    font-family: 'Gasoek One', 'sans-serif';
-    font-size: clamp(4rem, 8vw, 8rem);
-    font-weight: normal;
-    color: #a594f9;
-    line-height: 0.9;
-    letter-spacing: -0.02em;
-}
+      .app-team-title {
+        font-family: "Gasoek One", "sans-serif";
+        font-size: clamp(4rem, 8vw, 8rem);
+        font-weight: normal;
+        color: #a594f9;
+        line-height: 0.9;
+        letter-spacing: -0.02em;
+      }
 
-.hero-devices {
-    flex: 1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-    animation: slideInRight 1s ease-out;
-}
+      .hero-devices {
+        flex: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+        animation: slideInRight 1s ease-out;
+      }
 
-.device-mockup {
-    border-radius: 20px;
-    position: relative;
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-}
+      .device-mockup {
+        border-radius: 20px;
+        position: relative;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+      }
 
-.device-mockup.phone {
-    width: 200px;
-    height: 360px;
-    background: linear-gradient(145deg, #e6e6e6, #ffffff);
-    z-index: 2;
-    transform: rotate(-5deg);
-}
+      .device-mockup.phone {
+        width: 200px;
+        height: 360px;
+        background: linear-gradient(145deg, #e6e6e6, #ffffff);
+        z-index: 2;
+        transform: rotate(-5deg);
+        overflow: hidden;
+      }
+      .device-mockup.phone img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover; /* Add this */
+        display: block;
+      }
 
-.device-mockup.tablet {
-    width: 280px;
-    height: 400px;
-    background: linear-gradient(145deg, #999999, #b3b3b3);
-    position: absolute;
-    right: -40px;
-    top: -20px;
-    z-index: 1;
-    transform: rotate(10deg);
-}
+      .device-mockup.tablet {
+        width: 280px;
+        height: 400px;
+        background: linear-gradient(145deg, #999999, #b3b3b3);
+        position: absolute;
+        right: -40px;
+        top: -20px;
+        z-index: 1;
+        transform: rotate(10deg);
+        overflow: hidden;
+      }
+      .device-mockup.tablet img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover; /* Add this */
+        display: block;
+      }
 
-/* Domains Section */
-.domains-section {
-    background: #a594f9;
-    min-height: 40vh;
-    padding: 4rem 2rem;
-    clip-path: polygon(0 0, 100% 8%, 100% 100%, 0 100%);
-    margin-top: -2vh;
-}
+      /* Domains Section */
+      .domains-section {
+        background: #a594f9;
+        min-height: 40vh;
+        padding: 4rem 2rem;
+        clip-path: polygon(0 0, 100% 8%, 100% 100%, 0 100%);
+        margin-top: -2vh;
+      }
 
-.domains-header {
-    text-align: center;
-    margin-bottom: 3rem;
-    animation: fadeInDown 1s ease-out 0.5s both;
-}
+      .domains-header {
+        text-align: center;
+        margin-bottom: 3rem;
+        animation: fadeInDown 1s ease-out 0.5s both;
+      }
 
-.domains-title {
-    font-family: 'Gasoek One', 'sans-serif';
-    font-size: clamp(2.5rem, 5vw, 4rem);
-    color: #140b29;
-    font-weight: normal;
-    
-}
+      .domain-title {
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        padding: 1rem 0.5rem 0.7rem 0.5rem;
+        font-family: "Ubuntu", sans-serif;
+        font-size: 1.3rem;
+        font-weight: 700;
+        text-align: center;
+        letter-spacing: 0.5px;
+        /* color and background can be overridden inline for each card */
+        text-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+        z-index: 2;
+        border-bottom-left-radius: 20px;
+        border-bottom-right-radius: 20px;
+        /* fallback background */
+        background: rgba(20, 11, 41, 0.5);
+        color: #fff;
+      }
 
-.domains-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
-    max-width: 1200px;
-    margin: 0 auto;
-}
+      .domains-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+      .domains-title {
+        font-family: "Gasoek One", "sans-serif";
+        font-size: clamp(2.5rem, 5vw, 4rem);
+        color: #140b29;
+        font-weight: normal;
+      }
 
-.domain-card {
-    border-radius: 20px;
-    overflow: hidden;
-    box-shadow: 0 15px 35px rgba(20, 11, 41, 0.2);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    opacity: 0;
-    transform: translateY(50px);
-}
-
-.domain-card:hover {
-    transform: translateY(-10px) scale(1.02);
-    box-shadow: 0 25px 50px rgba(20, 11, 41, 0.3);
-}
-
-.domain-image {
-    width: 100%;
-    height: 200px;
-    object-fit: cover;
-    transition: transform 0.3s ease;
-}
-
-.domain-card:hover .domain-image {
-    transform: scale(1.1);
-}
-
-.placeholder {
-    background: linear-gradient(145deg, #e6e6e6, #ffffff);
-    min-height: 200px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.placeholder-content {
-    width: 80%;
-    height: 60%;
-    background: linear-gradient(45deg, #f0f0f0, #d0d0d0);
-    border-radius: 10px;
-}
-
-/* Animations */
-@keyframes slideInLeft {
-    from {
-        opacity: 0;
-        transform: translateX(-100px);
-    }
-    to {
-        opacity: 1;
-        transform: translateX(0);
-    }
-}
-
-@keyframes slideInRight {
-    from {
-        opacity: 0;
-        transform: translateX(100px);
-    }
-    to {
-        opacity: 1;
-        transform: translateX(0);
-    }
-}
-
-@keyframes fadeInDown {
-    from {
-        opacity: 0;
-        transform: translateY(-50px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-@keyframes fadeInUp {
-    from {
+      .domain-card {
+        position: relative;
+        border-radius: 20px;
+        overflow: hidden;
+        box-shadow: 0 15px 35px rgba(20, 11, 41, 0.2);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
         opacity: 0;
         transform: translateY(50px);
-    }
-    to {
+      }
+
+      .domain-card:hover {
+        transform: translateY(-10px) scale(1.02);
+        box-shadow: 0 25px 50px rgba(20, 11, 41, 0.3);
+      }
+
+      .domain-image {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+        transition: transform 0.3s ease;
+      }
+
+      .domain-card:hover .domain-image {
+        transform: scale(1.1);
+      }
+
+      .placeholder {
+        background: linear-gradient(145deg, #e6e6e6, #ffffff);
+        min-height: 200px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .placeholder-content {
+        width: 80%;
+        height: 60%;
+        background: linear-gradient(45deg, #f0f0f0, #d0d0d0);
+        border-radius: 10px;
+      }
+
+      /* Animations */
+      @keyframes slideInLeft {
+        from {
+          opacity: 0;
+          transform: translateX(-100px);
+        }
+        to {
+          opacity: 1;
+          transform: translateX(0);
+        }
+      }
+
+      @keyframes slideInRight {
+        from {
+          opacity: 0;
+          transform: translateX(100px);
+        }
+        to {
+          opacity: 1;
+          transform: translateX(0);
+        }
+      }
+
+      @keyframes fadeInDown {
+        from {
+          opacity: 0;
+          transform: translateY(-50px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(50px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .fade-in-up {
+        animation: fadeInUp 0.8s ease-out forwards;
+      }
+
+      /* Responsive Design */
+      @media (max-width: 768px) {
+        .hero-content {
+          flex-direction: column;
+          text-align: center;
+          gap: 2rem;
+        }
+
+        .hero-devices {
+          transform: scale(0.8);
+        }
+
+        .domains-grid {
+          grid-template-columns: 1fr;
+          gap: 1.5rem;
+        }
+
+        .domains-section {
+          padding: 3rem 1rem;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .app-team-title {
+          font-size: 3rem;
+        }
+
+        .domains-title {
+          margin-top: 35px;
+          font-size: 2rem;
+        }
+
+        .device-mockup.phone {
+          width: 150px;
+          height: 270px;
+        }
+
+        .device-mockup.tablet {
+          width: 210px;
+          height: 300px;
+        }
+      }
+
+      /* Scroll Effects */
+      .scroll-reveal {
+        opacity: 0;
+        transform: translateY(50px);
+        transition: all 0.6s ease-out;
+      }
+
+      .scroll-reveal.revealed {
         opacity: 1;
         transform: translateY(0);
-    }
-}
-
-.fade-in-up {
-    animation: fadeInUp 0.8s ease-out forwards;
-}
-
-/* Responsive Design */
-@media (max-width: 768px) {
-    .hero-content {
-        flex-direction: column;
-        text-align: center;
-        gap: 2rem;
-    }
-    
-    .hero-devices {
-        transform: scale(0.8);
-    }
-    
-    .domains-grid {
-        grid-template-columns: 1fr;
-        gap: 1.5rem;
-    }
-    
-    .domains-section {
-        padding: 3rem 1rem;
-    }
-}
-
-@media (max-width: 480px) {
-    .app-team-title {
-        font-size: 3rem;
-    }
-    
-    .domains-title {
-        margin-top: 35px;
-        font-size: 2rem;
-    }
-    
-    .device-mockup.phone {
-        width: 150px;
-        height: 270px;
-    }
-    
-    .device-mockup.tablet {
-        width: 210px;
-        height: 300px;
-    }
-}
-
-/* Scroll Effects */
-.scroll-reveal {
-    opacity: 0;
-    transform: translateY(50px);
-    transition: all 0.6s ease-out;
-}
-
-.scroll-reveal.revealed {
-    opacity: 1;
-    transform: translateY(0);
-}
-	</style>
-</head>
-<body>
+      }
+    </style>
+  </head>
+  <body>
     <%- include("./partials/nav") %>
     <div class="container">
-        <section class="hero-section">
-            <div class="hero-content">
-                <div class="hero-text">
-                    <h1 class="app-team-title">APP<br>TEAM</h1>
-                </div>
-                <div class="hero-devices">
-                    <div class="device-mockup phone"></div>
-                    <div class="device-mockup tablet"></div>
-                </div>
+      <section class="hero-section">
+        <div class="hero-content">
+          <div class="hero-text">
+            <h1 class="app-team-title">APP<br />TEAM</h1>
+          </div>
+          <div class="hero-devices">
+            <div class="device-mockup phone">
+              <img src="/homepage/cat1.jpg" />
             </div>
-        </section>
+            <div class="device-mockup tablet">
+              <img src="/homepage/apple.png" />
+            </div>
+          </div>
+        </div>
+      </section>
 
-        <!-- Domains Section -->
-        <section class="domains-section">
-            <div class="domains-header">
-                <h2 class="domains-title">Our Domains</h2>
+      <!-- Domains Section -->
+      <section class="domains-section">
+        <div class="domains-header">
+          <h2 class="domains-title">Our Domains</h2>
+        </div>
+        <div class="domains-grid">
+          <div class="domain-card" data-animate="fadeInUp">
+            <img
+              src="https://images.pexels.com/photos/177598/pexels-photo-177598.jpeg?auto=compress&cs=tinysrgb&w=400"
+              alt="Web Development"
+              class="domain-image"
+            />
+            <div class="domain-title" style="color: #a594f9">
+              AI & Machine Learning
             </div>
-            <div class="domains-grid">
-                <div class="domain-card" data-animate="fadeInUp">
-                    <img src="https://images.pexels.com/photos/177598/pexels-photo-177598.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Web Development" class="domain-image">
-                </div>
-                <div class="domain-card" data-animate="fadeInUp" data-delay="100">
-                    <img src="https://images.pexels.com/photos/147413/twitter-facebook-together-exchange-of-information-147413.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Mobile App Development" class="domain-image">
-                </div>
-                <div class="domain-card" data-animate="fadeInUp" data-delay="200">
-                    <img src="https://images.pexels.com/photos/8386440/pexels-photo-8386440.jpeg?auto=compress&cs=tinysrgb&w=400" alt="AI & Machine Learning" class="domain-image">
-                </div>
-                <div class="domain-card" data-animate="fadeInUp" data-delay="300">
-                    <img src="https://images.pexels.com/photos/5483077/pexels-photo-5483077.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Blockchain" class="domain-image">
-                </div>
-                <div class="domain-card" data-animate="fadeInUp" data-delay="400">
-                    <img src="https://images.pexels.com/photos/8728380/pexels-photo-8728380.jpeg?auto=compress&cs=tinysrgb&w=400" alt="VR/AR Development" class="domain-image">
-                </div>
-                <div class="domain-card placeholder" data-animate="fadeInUp" data-delay="500">
-                    <div class="placeholder-content"></div>
-                </div>
+          </div>
+          <div class="domain-card" data-animate="fadeInUp" data-delay="100">
+            <img
+              src="https://images.pexels.com/photos/147413/twitter-facebook-together-exchange-of-information-147413.jpeg?auto=compress&cs=tinysrgb&w=400"
+              alt="Mobile App Development"
+              class="domain-image"
+            />
+            <div class="domain-title" style="color: #a594f9">
+              Web Development
             </div>
-        </section>
-    <%- include("./partials/footer") %>
-
+          </div>
+          <div class="domain-card" data-animate="fadeInUp" data-delay="200">
+            <img
+              src="https://images.pexels.com/photos/8386440/pexels-photo-8386440.jpeg?auto=compress&cs=tinysrgb&w=400"
+              alt="AI & Machine Learning"
+              class="domain-image"
+            />
+            <div class="domain-title" style="color: #a594f9">
+              App Development
+            </div>
+          </div>
+          <div class="domain-card" data-animate="fadeInUp" data-delay="300">
+            <img
+              src="https://images.pexels.com/photos/5483077/pexels-photo-5483077.jpeg?auto=compress&cs=tinysrgb&w=400"
+              alt="Blockchain"
+              class="domain-image"
+            />
+            <div class="domain-title" style="color: #a594f9">
+              Internet of things
+            </div>
+          </div>
+          <div class="domain-card" data-animate="fadeInUp" data-delay="400">
+            <img
+              src="https://images.pexels.com/photos/8728380/pexels-photo-8728380.jpeg?auto=compress&cs=tinysrgb&w=400"
+              alt="VR/AR Development"
+              class="domain-image"
+            />
+            <div class="domain-title" style="color: #a594f9">
+              AR/VR
+            </div>
+          </div>
+        </div>
+      </section>
+      <%- include("./partials/footer") %>
     </div>
 
     <script>
-		// Scroll Animation Observer
-const observerOptions = {
-    threshold: 0.1,
-    rootMargin: '0px 0px -50px 0px'
-};
+      // Scroll Animation Observer
+      const observerOptions = {
+        threshold: 0.1,
+        rootMargin: "0px 0px -50px 0px",
+      };
 
-const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
             const delay = entry.target.dataset.delay || 0;
             setTimeout(() => {
-                entry.target.classList.add('fade-in-up');
+              entry.target.classList.add("fade-in-up");
             }, delay);
             observer.unobserve(entry.target);
+          }
+        });
+      }, observerOptions);
+
+      // Observe all domain cards
+      document.addEventListener("DOMContentLoaded", () => {
+        const animatedElements = document.querySelectorAll("[data-animate]");
+        animatedElements.forEach((el) => observer.observe(el));
+
+        // Add scroll reveal class to elements
+        const scrollElements = document.querySelectorAll(".domain-card");
+        scrollElements.forEach((el) => el.classList.add("scroll-reveal"));
+      });
+
+      // Smooth scroll behavior
+      document.documentElement.style.scrollBehavior = "smooth";
+
+      // Simple mouse parallax for hero devices
+      const heroDevices = document.querySelector(".hero-devices");
+      document.addEventListener("mousemove", (e) => {
+        if (heroDevices) {
+          const x = (e.clientX / window.innerWidth - 0.5) * 100;
+          const y = (e.clientY / window.innerHeight - 0.5) * 100;
+          heroDevices.style.transform = `translate(${x}px, ${y}px)`;
         }
-    });
-}, observerOptions);
-
-// Observe all domain cards
-document.addEventListener('DOMContentLoaded', () => {
-    const animatedElements = document.querySelectorAll('[data-animate]');
-    animatedElements.forEach(el => observer.observe(el));
-    
-    // Add scroll reveal class to elements
-    const scrollElements = document.querySelectorAll('.domain-card');
-    scrollElements.forEach(el => el.classList.add('scroll-reveal'));
-});
-
-// Smooth scroll behavior
-document.documentElement.style.scrollBehavior = 'smooth';
-
-// Simple mouse parallax for hero devices
-const heroDevices = document.querySelector('.hero-devices');
-document.addEventListener('mousemove', (e) => {
-    if (heroDevices) {
-        const x = (e.clientX / window.innerWidth - 0.5) * 100;
-        const y = (e.clientY / window.innerHeight - 0.5) * 100;
-        heroDevices.style.transform = `translate(${x}px, ${y}px)`;
-    }
-});
-document.addEventListener('mouseleave', () => {
-    if (heroDevices) {
-        heroDevices.style.transform = '';
-    }
-});
-	</script>
-</body>
-
+      });
+      document.addEventListener("mouseleave", () => {
+        if (heroDevices) {
+          heroDevices.style.transform = "";
+        }
+      });
+    </script>
+  </body>
 </html>
