@@ -11,7 +11,7 @@ const memberSchema = new Schema({
     },
     profileImageURL: {
         type: String,
-        required: true
+        default: "./uploads/default.png" ,
     },
     role: {
         type: String,
@@ -24,8 +24,12 @@ const memberSchema = new Schema({
     githubURL: {
         type: String,
         required: true
-    } 
-})
+    },
+    createdBy: {
+        type: Schema.Types.ObjectId,
+        ref: "users"
+    }
+}, {timestamps: true})
 
 const member = model("members", memberSchema)
 

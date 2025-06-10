@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fill in Details</title>
+    <title>Team Member Details</title>
     <style>
         * {
             margin: 0;
@@ -12,7 +12,7 @@
         }
 
         body {
-            background-color: #140b29;
+            background: #140b29;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             min-height: 100vh;
             display: flex;
@@ -21,209 +21,224 @@
             padding: 20px;
         }
 
-        .form-container {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
+        .form-card {
+            background: linear-gradient(145deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+            backdrop-filter: blur(15px);
             border-radius: 20px;
             padding: 40px;
             width: 100%;
-            max-width: 500px;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            max-width: 420px;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4);
+            position: relative;
         }
 
-        .form-title {
-            color: #ffffff;
-            font-size: 2rem;
-            font-weight: 600;
+        .form-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #667eea, #764ba2, #667eea);
+            border-radius: 20px 20px 0 0;
+        }
+
+        .title {
             text-align: center;
+            color: #ffffff;
+            font-size: 26px;
+            font-weight: 600;
             margin-bottom: 30px;
-            background: linear-gradient(135deg, #ffffff, #e0e0e0);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            text-shadow: 0 2px 10px rgba(255, 255, 255, 0.1);
         }
 
         .form-group {
-            margin-bottom: 20px;
+            margin-bottom: 24px;
         }
 
-        label {
+        .form-group label {
             display: block;
-            color: #ffffff;
+            color: #e0e0e0;
+            font-size: 14px;
             font-weight: 500;
             margin-bottom: 8px;
-            font-size: 0.95rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
 
-        input[type="text"],
-        input[type="url"],
-        input[type="file"],
-        textarea {
+        .form-group input,
+        .form-group select {
             width: 100%;
-            padding: 12px 16px;
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.3);
+            padding: 16px 20px;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1.5px solid rgba(255, 255, 255, 0.2);
             border-radius: 12px;
             color: #ffffff;
-            font-size: 1rem;
-            transition: all 0.3s ease;
-        }
-
-        input[type="text"]:focus,
-        input[type="url"]:focus,
-        textarea:focus {
+            font-size: 16px;
             outline: none;
-            border-color: #8b5cf6;
-            background: rgba(255, 255, 255, 0.15);
-            box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.2);
         }
 
-        input[type="file"] {
-            border: 2px dashed rgba(255, 255, 255, 0.3);
+        .form-group input::placeholder {
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .form-group select option {
+            background: #140b29;
+            color: #ffffff;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus {
+            border-color: #667eea;
+            background: rgba(255, 255, 255, 0.12);
+        }
+
+        .file-upload-wrapper {
+            position: relative;
+        }
+
+        .file-upload-wrapper input[type="file"] {
+            opacity: 0;
+            position: absolute;
+            z-index: -1;
+        }
+
+        .file-upload-label {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            padding: 16px 20px;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1.5px dashed rgba(255, 255, 255, 0.3);
+            border-radius: 12px;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 16px;
             cursor: pointer;
-            text-align: center;
-            padding: 20px;
         }
 
-        input[type="file"]:hover {
-            border-color: #8b5cf6;
-            background: rgba(139, 92, 246, 0.1);
+        .file-upload-label:hover {
+            border-color: #667eea;
+            background: rgba(255, 255, 255, 0.12);
         }
 
-        textarea {
-            resize: vertical;
-            min-height: 100px;
-            font-family: inherit;
-        }
-
-        .char-count {
-            color: #b0b0b0;
-            font-size: 0.85rem;
-            text-align: right;
-            margin-top: 5px;
-        }
-
-        .char-count.warning {
-            color: #f59e0b;
-        }
-
-        .char-count.error {
-            color: #ef4444;
+        .upload-icon {
+            font-size: 18px;
         }
 
         .submit-btn {
             width: 100%;
-            padding: 14px 24px;
-            background: linear-gradient(135deg, #8b5cf6, #7c3aed);
+            padding: 16px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             border: none;
             border-radius: 12px;
-            color: #ffffff;
-            font-size: 1.1rem;
+            color: white;
+            font-size: 16px;
             font-weight: 600;
             cursor: pointer;
-            transition: all 0.3s ease;
-            margin-top: 20px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 10px;
         }
 
-        .submit-btn:hover {
-            background: linear-gradient(135deg, #7c3aed, #6d28d9);
-            transform: translateY(-2px);
-            box-shadow: 0 10px 25px rgba(139, 92, 246, 0.3);
+        .decorative-element {
+            position: absolute;
+            width: 80px;
+            height: 80px;
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            top: -40px;
+            right: -40px;
         }
 
-        .submit-btn:active {
-            transform: translateY(0);
+        .decorative-element::after {
+            content: '';
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            opacity: 0.3;
         }
 
-        ::placeholder {
-            color: rgba(255, 255, 255, 0.6);
-        }
-
-        .file-input-wrapper {
-            position: relative;
-            overflow: hidden;
-            display: inline-block;
-            width: 100%;
-        }
-
-        .file-input-text {
-            color: rgba(255, 255, 255, 0.7);
-            font-size: 0.9rem;
+        @media (max-width: 480px) {
+            .form-card {
+                padding: 30px 25px;
+            }
+            
+            .title {
+                font-size: 22px;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="form-container">
-        <h1 class="form-title">Fill in Details</h1>
+    
+    <div class="form-card">
+        <div class="decorative-element"></div>
         
-        <form id="profileForm" method="post" action="/member/newMember" enctype="multipart/form-data">
+        <h1 class="title">Team Member's Details</h1>
+        
+        <form method="post" action="/member/newMember" enctype="multipart/form-data">
             <div class="form-group">
-                <label for="profileImage">Profile Image</label>
-                <input type="file" id="profileImage" name="profileImageURL" required>
-                <div class="file-input-text">Choose an image file</div>
-            </div>
-
-            <div class="form-group">
-                <label for="name">Name</label>
+                <label for="name">Full Name</label>
                 <input type="text" id="name" name="name" placeholder="Enter your full name" required>
             </div>
-
             <div class="form-group">
-                <label for="github">GitHub</label>
-                <input type="url" id="github" name="githubURL" placeholder="https://github.com/username" required>
+                <label for="position">Position</label>
+                <select id="position" name="role" required>
+                    <option value="" disabled selected>What's your position</option>
+                    <option value="Club Secretary">Club Secretary</option>
+                    <option value="Convener">Convener</option>
+                    <option value="Club Coordinator">Club Coordinator</option>
+                    <option value="Executive Member">Executive Member</option>
+                    <option value="Volunteer">Volunteer</option>
+                </select>
             </div>
-
+            
             <div class="form-group">
-                <label for="linkedin">LinkedIn</label>
-                <input type="url" id="linkedin" name="linkedInURL" placeholder="https://linkedin.com/in/username" required>
+                <label for="bio">Tell a little about yourself</label>
+                <input type="text" id="email" name="bio" placeholder="Enter a tagline" required>
             </div>
-
             <div class="form-group">
-                <label for="role">Role</label>
-                <input type="text" id="role" name="role" placeholder="e.g., Frontend Developer, Designer" required>
-            </div>
+                <label for="githubURL">Github Link 🔗</label>
+                <input type="text" id="email" name="githubURL" placeholder="Enter your github profile link" required>
 
+            </div><div class="form-group">
+                <label for="linkedInURL">LinkedIn Link 🔗</label>
+                <input type="bio" id="emlinkedInURL" name="linkedInURL" placeholder="Enter your linkedin profile link" required>
+            </div>
+            
             <div class="form-group">
-                <label for="bio">Bio (max 100 words)</label>
-                <textarea id="bio" name="bio" placeholder="Tell us about yourself..." required maxlength="500"></textarea>
-                <div class="char-count" id="charCount">0/100 words</div>
+                <label for="profile-image">Profile Image</label>
+                <div class="file-upload-wrapper">
+                    <input type="file" id="profile-image" name="profileImageURL" required>
+                    <label for="profile-image" class="file-upload-label">
+                        <span class="upload-text">Choose Image</span>
+                        <span class="upload-icon">📁</span>
+                    </label>
+                </div>
             </div>
-
-            <button type="submit" class="submit-btn">Submit Details</button>
+            
+            <button type="submit" class="submit-btn">Join the Team</button>
         </form>
     </div>
+    
+<script>
+    const fileInput = document.getElementById('profile-image');
+    const uploadText = document.querySelector('.upload-text');
 
-    <script>
-        const bioTextarea = document.getElementById('bio');
-        const charCount = document.getElementById('charCount');
-        const form = document.getElementById('profileForm');
-        const fileInput = document.getElementById('profileImage');
-
-        // Word count for bio
-        bioTextarea.addEventListener('input', function() {
-            const text = this.value.trim();
-            const words = text === '' ? 0 : text.split(/\s+/).length;
-            
-            charCount.textContent = `${words}/100 words`;
-            
-            if (words > 100) {
-                charCount.classList.add('error');
-                charCount.classList.remove('warning');
-            } else if (words > 80) {
-                charCount.classList.add('warning');
-                charCount.classList.remove('error');
-            } else {
-                charCount.classList.remove('warning', 'error');
-            }
-        });
-
-        // File input styling
-        fileInput.addEventListener('change', function() {
-            const fileName = this.files[0]?.name || 'Choose an image file';
-            const fileText = this.nextElementSibling;
-            fileText.textContent = fileName;
-        });
-
-    </script>
+    fileInput.addEventListener('change', function() {
+        if (fileInput.files.length > 0) {
+            uploadText.textContent = fileInput.files[0].name;
+        } else {
+            uploadText.textContent = 'Choose Image';
+        }
+    });
+</script>
 </body>
 </html>

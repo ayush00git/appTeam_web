@@ -5,13 +5,18 @@ const multer = require("multer")
 const fs = require("fs")
 const path = require("path")
 
-router.get('/', (req, res) => {
-    return res.render("member")
+router.get('/', async(req, res) => {
+    const newMembs = await member.find({})
+    return res.render("member", {
+        newMembs
+    })
 })
 
 const storage = multer.diskStorage({
     destination: function(req, file, cb) {
+        // const uploadPath = path.resolve(`./public/uploads/${req.user.userName}`)
         const uploadPath = path.resolve(`./public/uploads/${req.body.name}`)
+
         fs.mkdirSync(uploadPath, { recursive: true })
         cb(null, uploadPath)
     },
@@ -28,15 +33,15 @@ router.get('/newMember', (req, res) => {
 
 router.post('/newMember', upload.single('profileImageURL'), async(req, res) => {
     const { name, bio, role, githubURL, linkedInURL } = req.body
-    await member.create({
+    const newMemb = await member.create({
         name,
-        profileImageURL: req.file.filename,
+        profileImageURL: req.file? req.file.filename : undefined,
         role,
         githubURL,
         linkedInURL, 
         bio
     })
-    return res.render('member')
+    return res.redirect('/member')
 })
 
 
