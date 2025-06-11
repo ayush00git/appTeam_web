@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #140b29;
+            color: white;
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .header {
+            text-align: center;
+            padding: 80px 0 60px;
+        }
+
+        .header h1 {
+            font-size: 4rem;
+            font-weight: bold;
+            background: linear-gradient(45deg, #e0aaff, #c77dff, #9d4edd);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 20px;
+            opacity: 0;
+            transform: translateY(50px);
+            animation: fadeInUp 1s ease-out forwards;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .gallery-section {
+            padding: 40px 0;
+        }
+
+        .gallery-item {
+            margin-bottom: 80px;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s ease-out;
+        }
+
+        .gallery-item.animate {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .gallery-row {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+            margin-bottom: 60px;
+        }
+
+        .gallery-row:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+
+        .image-pair {
+            flex: 1;
+            display: flex;
+            gap: 20px;
+        }
+
+        .image-container {
+            flex: 1;
+            position: relative;
+            overflow: hidden;
+            border-radius: 15px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease;
+        }
+
+        .image-container:hover {
+            transform: scale(1.05);
+        }
+
+        .image-container img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .image-container:hover img {
+            transform: scale(1.1);
+        }
+
+        .content-section {
+            flex: 1;
+            padding: 20px;
+        }
+
+        .content-section h3 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: #e0aaff;
+            font-weight: bold;
+        }
+
+        .content-section p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #d8bfd8;
+            text-align: justify;
+        }
+
+        .single-images {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 60px;
+        }
+
+        .single-image {
+            position: relative;
+            overflow: hidden;
+            border-radius: 15px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease;
+        }
+
+        .single-image:hover {
+            transform: translateY(-10px);
+        }
+
+        .single-image img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .single-image:hover img {
+            transform: scale(1.1);
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2.5rem;
+            }
+
+            .gallery-row {
+                flex-direction: column !important;
+                gap: 30px;
+            }
+
+            .image-pair {
+                flex-direction: column;
+            }
+
+            .content-section h3 {
+                font-size: 1.5rem;
+            }
+
+            .content-section p {
+                font-size: 1rem;
+            }
+        }
+
+        .scroll-indicator {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, #e0aaff, #c77dff, #9d4edd);
+            transform-origin: 0%;
+            transform: scaleX(0);
+            z-index: 1000;
+        }
+    </style>
+</head>
+<body>
+    <%- include('./partials/nav') %>
+    <div class="scroll-indicator" id="scrollIndicator"></div>
+    
+    <div class="container">
+        <div class="header">
+            <h1>About Us</h1>
+        </div>
+
+        <div class="gallery-section">
+            <div class="gallery-item">
+                <div class="gallery-row">
+                    <div class="image-pair">
+                        <div class="image-container">
+                            <img src="/aboutUs/us_1.jpeg" alt="Team collaboration">
+                        </div>
+                        <div class="image-container">
+                            <img src="/aboutUs/us_2.jpg" alt="Creative workspace">
+                        </div>
+                    </div>
+                    <div class="content-section">
+                        <h3>Our Journey</h3>
+                        <p>We began as a small group of passionate individuals united by a vision to build something impactful. What started in a modest setting quickly evolved through our shared drive, creativity, and relentless effort. Along the way, we took on challenges that tested and strengthened our bond—most notably organizing HACKONHILLS, the biggest hackathon in North India. Countless late nights, problem-solving sessions, and team wins shaped our path. Today, we stand as a tightly knit team that thrives on innovation, collaboration, and creating meaningful experiences together.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="gallery-item">
+                <div class="gallery-row">
+                    <div class="image-pair">
+                        <div class="image-container">
+                            <img src="/aboutUs/inv1.jpg" alt="Innovation lab">
+                        </div>
+                        <div class="image-container">
+                            <img src="/aboutUs/inv2.jpg" alt="Technology focus">
+                        </div>
+                    </div>
+                    <div class="content-section">
+                        <h3>Innovation & Technology</h3>
+                        <p>From humble beginnings, our team came together with a shared passion for innovation and a drive to make an impact through technology. What started as a small group evolved into a force behind meaningful projects—like developing the official Nimbus and Hillfair apps for NIT Hamirpur, and organizing HACKONHILLS, the largest hackathon in North India. Our journey has been shaped by late-night coding sprints, creative problem-solving, and an unshakable commitment to excellence. Today, we continue to grow as a team that believes in building solutions that matter—powered by collaboration, curiosity, and a love for tech.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="gallery-item">
+                <div class="gallery-row">
+                    <div class="image-pair">
+                        <div class="image-container">
+                            <img src="/aboutUs/ach2.jpg" alt="Global reach">
+                        </div>
+                        <div class="image-container">
+                            <img src="/aboutUs/ach1.jpg" alt="Diverse community">
+                        </div>
+                    </div>
+                    <div class="content-section">
+                        <h3>Best Tech Innovation Team</h3>
+                        <p>Our journey has been marked by dedication, creativity, and a relentless pursuit of excellence. One of our proudest milestones was being honored with the title of "Best Tech Innovation Team", a recognition of the impact we've made through our projects and initiatives. From building official apps for Nimbus and Hillfair, to leading large-scale events like HACKONHILLS, we’ve consistently pushed boundaries and delivered with purpose. These achievements reflect not just our technical skills, but our ability to work as a team, turn ideas into reality, and inspire innovation at every step.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="gallery-item">
+                <div class="single-images">
+                    <div class="single-image">
+                        <img src="/aboutUs/end1.jpg" alt="Team meeting">
+                    </div>
+                    <div class="single-image">
+                        <img src="/aboutUs/end2.jpg" alt="Strategic planning">
+                    </div>
+                    <div class="single-image">
+                        <img src="/aboutUs/end3.jpg" alt="Success celebration">
+                    </div>
+                </div>
+            </div>
+        </div>
+    <%- include('./partials/footer') %>
+
+    </div>
+
+    <script>
+        // Smooth scrolling animation on scroll
+        function animateOnScroll() {
+            const elements = document.querySelectorAll('.gallery-item');
+            const windowHeight = window.innerHeight;
+
+            elements.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const elementVisible = 150;
+
+                if (elementTop < windowHeight - elementVisible) {
+                    element.classList.add('animate');
+                }
+            });
+        }
+
+        // Scroll progress indicator
+        function updateScrollIndicator() {
+            const scrollIndicator = document.getElementById('scrollIndicator');
+            const scrollTop = window.pageYOffset;
+            const docHeight = document.body.offsetHeight;
+            const winHeight = window.innerHeight;
+            const scrollPercent = scrollTop / (docHeight - winHeight);
+            const scaleX = scrollPercent;
+            
+            scrollIndicator.style.transform = `scaleX(${scaleX})`;
+        }
+
+        // Smooth scroll behavior
+        document.documentElement.style.scrollBehavior = 'smooth';
+
+        // Event listeners
+        window.addEventListener('scroll', () => {
+            animateOnScroll();
+            updateScrollIndicator();
+        });
+
+        window.addEventListener('load', () => {
+            animateOnScroll();
+            updateScrollIndicator();
+        });
+
+        // Add stagger effect to animations
+        const galleryItems = document.querySelectorAll('.gallery-item');
+        galleryItems.forEach((item, index) => {
+            item.style.transitionDelay = `${index * 0.2}s`;
+        });
+    </script>
+</body>
+</html>

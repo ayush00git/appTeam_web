@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Gasoek+One&display=swap"
+      rel="stylesheet"
+    />
+    <title>What We Do Section with Scroll Animations</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'ubuntu', sans-serif;
+            background-color: #140b29;
+            color: #a392f6;
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        .container {
+            min-height: 200vh;
+            position: relative;
+            padding: 4rem 2rem;
+        }
+
+        /* Geometric Background Elements */
+        .bg-geometric {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .bg-shape-1 {
+            position: absolute;
+            top: 5rem;
+            left: 2.5rem;
+            width: 16rem;
+            height: 16rem;
+            background-color: #a392f6;
+            opacity: 0.2;
+            transform: rotate(45deg);
+            border-radius: 0.5rem;
+        }
+
+        .bg-shape-2 {
+            position: absolute;
+            top: 10rem;
+            right: 5rem;
+            width: 8rem;
+            height: 8rem;
+            background-color: #a392f6;
+            opacity: 0.1;
+            border-radius: 50%;
+        }
+
+        .bg-shape-3 {
+            position: absolute;
+            bottom: 10rem;
+            left: 25%;
+            width: 12rem;
+            height: 12rem;
+            background-color: #a392f6;
+            opacity: 0.15;
+            transform: rotate(-12deg);
+            border-radius: 0.5rem;
+        }
+
+        .bg-shape-4 {
+            position: absolute;
+            bottom: 5rem;
+            right: 2.5rem;
+            width: 10rem;
+            height: 10rem;
+            background-color: #a594f9;
+            opacity: 0.1;
+            transform: rotate(30deg);
+            border-radius: 0.5rem;
+        }
+
+        /* Main Content */
+        .content {
+            position: relative;
+            z-index: 10;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Header */
+        .header {
+            text-align: center;
+            margin-bottom: 5rem;
+        }
+
+        .main-title {
+            font-size: 4rem;
+            font-weight: normal;
+            letter-spacing: 0.2em;
+            font-family:'Gasoek One', sans-serif;
+        }
+
+        @keyframes titleGlow {
+            from {
+                text-shadow: 0 0 20px rgba(163, 146, 246, 0.5);
+            }
+            to {
+                text-shadow: 0 0 30px rgba(163, 146, 246, 0.8);
+            }
+        }
+
+        /* Sections */
+        .sections {
+            display: grid;
+            gap: 6rem;
+            margin-top: 4rem;
+        }
+
+        .section {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 4rem;
+            align-items: center;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .section.fade-in {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .section.fade-out {
+            opacity: 0.3;
+            transform: translateY(20px);
+        }
+
+        .section-visual {
+            height: 300px;
+            background: linear-gradient(135deg, #a392f6 0%, #140b29 100%);
+            border-radius: 1rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .section-visual::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent 40%, rgba(163, 146, 246, 0.1) 50%, transparent 60%);
+            animation: shimmer 3s infinite;
+        }
+
+        @keyframes shimmer {
+            0% {
+                transform: translateX(-100%) translateY(-100%) rotate(45deg);
+            }
+            100% {
+                transform: translateX(100%) translateY(100%) rotate(45deg);
+            }
+        }
+
+        .section-content {
+            padding: 2rem 0;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            text-shadow: 0 0 10px rgba(163, 146, 246, 0.3);
+        }
+
+        .section-description {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            opacity: 0.9;
+            margin-bottom: 2rem;
+        }
+
+        .section-divider {
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, #a392f6, transparent);
+            margin: 2rem 0;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .main-title {
+                font-size: 2.5rem;
+            }
+
+            .section {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+                text-align: center;
+            }
+
+            .section-visual {
+                height: 200px;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .bg-shape-1, .bg-shape-3 {
+                width: 8rem;
+                height: 8rem;
+            }
+        }
+
+        /* Additional Animation Classes */
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease-out;
+        }
+
+        .animate-on-scroll.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <!-- Geometric Background -->
+    <div class="bg-geometric">
+        <div class="bg-shape-1"></div>
+        <div class="bg-shape-2"></div>
+        <div class="bg-shape-3"></div>
+        <div class="bg-shape-4"></div>
+    </div>
+
+    <div class="container">
+        <div class="content">
+            <!-- Header -->
+            <div class="header">
+                <h1 class="main-title">WHAT WE DO</h1>
+            </div>
+
+            <!-- Sections -->
+            <div class="sections">
+                <!-- Conduct Hack on Hills -->
+                <div class="section animate-section" id="section-1">
+                    <div class="section-visual"></div>
+                    <div class="section-content">
+                        <h2 class="section-title">Conduct Hack on Hills</h2>
+                        <p class="section-description">
+                            North India's biggest student-run hackathon, powered by our robust event management and judging platform with real-time updates and seamless participant experience.
+                        </p>
+                        <div class="section-divider"></div>
+                    </div>
+                </div>
+
+                <!-- Nimbus App -->
+                <div class="section animate-section" id="section-2">
+                    <div class="section-content">
+                        <h2 class="section-title">Nimbus App</h2>
+                        <p class="section-description">
+                            A comprehensive platform for NIT Hamirpur's annual tech fest, offering schedules, live updates, interactive maps, and streamlined event registration features.
+                        </p>
+                        <div class="section-divider"></div>
+                    </div>
+                    <div class="section-visual"></div>
+                </div>
+
+                <!-- Hillfair App -->
+                <div class="section animate-section" id="section-3">
+                    <div class="section-visual"></div>
+                    <div class="section-content">
+                        <h2 class="section-title">Hillfair App</h2>
+                        <p class="section-description">
+                            The official app for NIT Hamirpur's cultural fest, blending vibrant UI with seamless user experience to celebrate student creativity and cultural diversity through innovative features.
+                        </p>
+                        <div class="section-divider"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Intersection Observer for scroll animations
+        const observerOptions = {
+            threshold: 0.3,
+            rootMargin: '-50px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                const section = entry.target;
+                
+                if (entry.isIntersecting) {
+                    section.classList.add('fade-in');
+                    section.classList.remove('fade-out');
+                } else {
+                    section.classList.add('fade-out');
+                    section.classList.remove('fade-in');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all sections
+        document.querySelectorAll('.animate-section').forEach(section => {
+            observer.observe(section);
+        });
+
+        // Additional scroll effects for smoother animations
+        let ticking = false;
+
+        function updateScrollEffects() {
+            const scrollY = window.scrollY;
+            const sections = document.querySelectorAll('.animate-section');
+            
+            sections.forEach((section, index) => {
+                const rect = section.getBoundingClientRect();
+                const isVisible = rect.top < window.innerHeight && rect.bottom > 0;
+                
+                if (isVisible) {
+                    const scrollProgress = Math.max(0, Math.min(1, 
+                        (window.innerHeight - rect.top) / (window.innerHeight + rect.height)
+                    ));
+                    
+                    // Apply subtle transform based on scroll progress
+                    const translateY = (1 - scrollProgress) * 20;
+                    const opacity = Math.max(0.3, scrollProgress);
+                    
+                    section.style.transform = `translateY(${translateY}px)`;
+                    section.style.opacity = opacity;
+                }
+            });
+            
+            ticking = false;
+        }
+
+        function requestTick() {
+            if (!ticking) {
+                requestAnimationFrame(updateScrollEffects);
+                ticking = true;
+            }
+        }
+
+        window.addEventListener('scroll', requestTick);
+        
+        // Initial load animation
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                document.querySelector('.main-title').style.opacity = '1';
+                document.querySelector('.main-title').style.transform = 'translateY(0)';
+            }, 300);
+        });
+    </script>
+</body>
+</html>

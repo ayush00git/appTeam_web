@@ -44,5 +44,4 @@ router.post('/newMember', upload.single('profileImageURL'), async(req, res) => {
     return res.redirect('/member')
 })
 
-
 module.exports = router  
