@@ -1,371 +1,416 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;500;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Gasoek+One&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap"
       rel="stylesheet"
     />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Gasoek+One&display=swap"
-      rel="stylesheet"
-    />
-    <title>What We Do Section with Scroll Animations</title>
+    <link href="https://fonts.googleapis.com/css2?family=Gasoek+One&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
+    <title>What We Do</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "ubuntu", sans-serif;
+        background-color: #140b29;
+        color: #ffffff;
+        overflow-x: hidden;
+      }
+
+      .app {
+        display: flex;
+        min-height: 100vh;
+        position: relative;
+      }
+
+      /* Left Panel - Fixed Purple Shape with Image */
+      .left-panel {
+        position: fixed;
+        left: 0;
+        top: 0;
+        width: 50%;
+        height: 100vh;
+        z-index: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #140b29;
+      }
+
+      .purple-shape {
+        position: absolute;
+        width: 320px;
+        height: 420px;
+        background: #a594f9;
+        z-index: 1;
+        clip-path: polygon(0% 15%, 85% 0%, 100% 85%, 15% 100%);
+        transform: rotate(-5deg);
+      }
+
+      .image-container {
+        position: relative;
+        z-index: 2;
+        width: 260px;
+        height: 360px;
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4);
+        transition: all 0.8s ease-in-out;
+        transform: rotate(-2deg);
+      }
+
+      .section-image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: all 0.8s ease-in-out;
+        opacity: 1;
+      }
+
+      .section-image.changing {
+        opacity: 0;
+        transform: scale(1.05);
+      }
+
+      /* Right Panel - Scrollable Content */
+      .right-panel {
+        margin-left: 50%;
+        width: 50%;
+        min-height: 100vh;
+        background: #140b29;
+        position: relative;
+        z-index: 2;
+      }
+
+      .content-container {
+        padding: 0;
+        height: 100%;
+      }
+
+      /* Fixed Title in Top Left */
+      .main-title {
+        position: absolute;
+        top: 3rem;
+        left: 3rem;
+        font-family: 'Gasoek One', sans-serif;
+        font-size: 4rem;
+        font-weight: 400;
+        color: #a594f9;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        line-height: 1.2;
+        z-index: 10;
+        margin-bottom: 0;
+      }
+
+      /* Header - Now just empty space */
+      .header {
+        height: 100vh;
+        background: #140b29;
+      }
+
+      /* Sections */
+      .section {
+        min-height: 80vh;
+        padding: 4rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        transition: all 0.6s ease-in-out;
+        position: relative;
+      }
+
+      .section.active {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .section.inactive {
+        opacity: 0.3;
+        transform: translateY(20px);
+      }
+
+      .section-title {
+        font-size: 2.5rem;
+        font-weight: 800;
+        margin-bottom: 2rem;
+        color: #a594f9;
+        line-height: 1.3;
+      }
+
+      .section-description {
+        font-size: 1.1rem;
+        line-height: 1.8;
+        color: #e2e8f0;
+        margin-bottom: 3rem;
+        max-width: 90%;
+        font-weight: 400;
+      }
+
+      .section-divider {
+        width: 100%;
+        height: 2px;
+        background: linear-gradient(90deg, #a594f9 0%, transparent 100%);
+        margin-top: auto;
+      }
+
+      .scroll-spacer {
+        height: 50vh;
+      }
+
+      /* Responsive Design */
+      @media (max-width: 1024px) {
+        .app {
+          flex-direction: column;
         }
 
-        body {
-            font-family: 'ubuntu', sans-serif;
-            background-color: #140b29;
-            color: #a392f6;
-            overflow-x: hidden;
-            line-height: 1.6;
+        .left-panel {
+          position: relative;
+          width: 100%;
+          height: 50vh;
         }
 
-        .container {
-            min-height: 200vh;
-            position: relative;
-            padding: 4rem 2rem;
+        .purple-shape {
+          width: 280px;
+          height: 350px;
         }
 
-        /* Geometric Background Elements */
-        .bg-geometric {
-            position: fixed;
-            inset: 0;
-            pointer-events: none;
-            z-index: 1;
+        .image-container {
+          width: 220px;
+          height: 280px;
         }
 
-        .bg-shape-1 {
-            position: absolute;
-            top: 5rem;
-            left: 2.5rem;
-            width: 16rem;
-            height: 16rem;
-            background-color: #a392f6;
-            opacity: 0.2;
-            transform: rotate(45deg);
-            border-radius: 0.5rem;
-        }
-
-        .bg-shape-2 {
-            position: absolute;
-            top: 10rem;
-            right: 5rem;
-            width: 8rem;
-            height: 8rem;
-            background-color: #a392f6;
-            opacity: 0.1;
-            border-radius: 50%;
-        }
-
-        .bg-shape-3 {
-            position: absolute;
-            bottom: 10rem;
-            left: 25%;
-            width: 12rem;
-            height: 12rem;
-            background-color: #a392f6;
-            opacity: 0.15;
-            transform: rotate(-12deg);
-            border-radius: 0.5rem;
-        }
-
-        .bg-shape-4 {
-            position: absolute;
-            bottom: 5rem;
-            right: 2.5rem;
-            width: 10rem;
-            height: 10rem;
-            background-color: #a594f9;
-            opacity: 0.1;
-            transform: rotate(30deg);
-            border-radius: 0.5rem;
-        }
-
-        /* Main Content */
-        .content {
-            position: relative;
-            z-index: 10;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        /* Header */
-        .header {
-            text-align: center;
-            margin-bottom: 5rem;
+        .right-panel {
+          margin-left: 0;
+          width: 100%;
         }
 
         .main-title {
-            font-size: 4rem;
-            font-weight: normal;
-            letter-spacing: 0.2em;
-            font-family:'Gasoek One', sans-serif;
-        }
-
-        @keyframes titleGlow {
-            from {
-                text-shadow: 0 0 20px rgba(163, 146, 246, 0.5);
-            }
-            to {
-                text-shadow: 0 0 30px rgba(163, 146, 246, 0.8);
-            }
-        }
-
-        /* Sections */
-        .sections {
-            display: grid;
-            gap: 6rem;
-            margin-top: 4rem;
+          font-size: 2.5rem;
+          top: 2rem;
+          left: 2rem;
         }
 
         .section {
-            display: grid;
-            grid-template-columns: 1fr 2fr;
-            gap: 4rem;
-            align-items: center;
-            opacity: 0;
-            transform: translateY(50px);
-            transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-        }
-
-        .section.fade-in {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .section.fade-out {
-            opacity: 0.3;
-            transform: translateY(20px);
-        }
-
-        .section-visual {
-            height: 300px;
-            background: linear-gradient(135deg, #a392f6 0%, #140b29 100%);
-            border-radius: 1rem;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .section-visual::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: linear-gradient(45deg, transparent 40%, rgba(163, 146, 246, 0.1) 50%, transparent 60%);
-            animation: shimmer 3s infinite;
-        }
-
-        @keyframes shimmer {
-            0% {
-                transform: translateX(-100%) translateY(-100%) rotate(45deg);
-            }
-            100% {
-                transform: translateX(100%) translateY(100%) rotate(45deg);
-            }
-        }
-
-        .section-content {
-            padding: 2rem 0;
+          padding: 2rem;
+          min-height: 60vh;
         }
 
         .section-title {
-            font-size: 2.5rem;
-            font-weight: 800;
-            margin-bottom: 1.5rem;
-            text-shadow: 0 0 10px rgba(163, 146, 246, 0.3);
+          font-size: 2rem;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .purple-shape {
+          width: 240px;
+          height: 300px;
+        }
+
+        .image-container {
+          width: 180px;
+          height: 240px;
+        }
+
+        .main-title {
+          font-size: 2rem;
+          top: 1.5rem;
+          left: 1.5rem;
+        }
+
+        .section {
+          padding: 1.5rem;
+        }
+
+        .section-title {
+          font-size: 1.8rem;
         }
 
         .section-description {
-            font-size: 1.1rem;
-            line-height: 1.8;
-            opacity: 0.9;
-            margin-bottom: 2rem;
+          font-size: 1rem;
         }
+      }
 
-        .section-divider {
-            width: 100%;
-            height: 2px;
-            background: linear-gradient(90deg, #a392f6, transparent);
-            margin: 2rem 0;
-        }
+      /* Smooth scrolling with heavy feel */
+      html {
+        scroll-behavior: smooth;
+      }
 
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .main-title {
-                font-size: 2.5rem;
-            }
+      body {
+        scroll-behavior: smooth;
+      }
 
-            .section {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-                text-align: center;
-            }
+      /* Custom scrollbar */
+      ::-webkit-scrollbar {
+        width: 8px;
+      }
 
-            .section-visual {
-                height: 200px;
-            }
+      ::-webkit-scrollbar-track {
+        background: #140b29;
+      }
 
-            .section-title {
-                font-size: 2rem;
-            }
+      ::-webkit-scrollbar-thumb {
+        background: #a594f9;
+        border-radius: 4px;
+      }
 
-            .bg-shape-1, .bg-shape-3 {
-                width: 8rem;
-                height: 8rem;
-            }
-        }
-
-        /* Additional Animation Classes */
-        .animate-on-scroll {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.6s ease-out;
-        }
-
-        .animate-on-scroll.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
+      ::-webkit-scrollbar-thumb:hover {
+        background: #9084e8;
+      }
     </style>
-</head>
-<body>
-    <!-- Geometric Background -->
-    <div class="bg-geometric">
-        <div class="bg-shape-1"></div>
-        <div class="bg-shape-2"></div>
-        <div class="bg-shape-3"></div>
-        <div class="bg-shape-4"></div>
-    </div>
+  <body>
+    <div class="app">
+      <!-- Fixed Title in Top Left -->
+      <h1 class="main-title">WHAT WE DO</h1>
 
-    <div class="container">
-        <div class="content">
-            <!-- Header -->
-            <div class="header">
-                <h1 class="main-title">WHAT WE DO</h1>
-            </div>
-
-            <!-- Sections -->
-            <div class="sections">
-                <!-- Conduct Hack on Hills -->
-                <div class="section animate-section" id="section-1">
-                    <div class="section-visual"></div>
-                    <div class="section-content">
-                        <h2 class="section-title">Conduct Hack on Hills</h2>
-                        <p class="section-description">
-                            North India's biggest student-run hackathon, powered by our robust event management and judging platform with real-time updates and seamless participant experience.
-                        </p>
-                        <div class="section-divider"></div>
-                    </div>
-                </div>
-
-                <!-- Nimbus App -->
-                <div class="section animate-section" id="section-2">
-                    <div class="section-content">
-                        <h2 class="section-title">Nimbus App</h2>
-                        <p class="section-description">
-                            A comprehensive platform for NIT Hamirpur's annual tech fest, offering schedules, live updates, interactive maps, and streamlined event registration features.
-                        </p>
-                        <div class="section-divider"></div>
-                    </div>
-                    <div class="section-visual"></div>
-                </div>
-
-                <!-- Hillfair App -->
-                <div class="section animate-section" id="section-3">
-                    <div class="section-visual"></div>
-                    <div class="section-content">
-                        <h2 class="section-title">Hillfair App</h2>
-                        <p class="section-description">
-                            The official app for NIT Hamirpur's cultural fest, blending vibrant UI with seamless user experience to celebrate student creativity and cultural diversity through innovative features.
-                        </p>
-                        <div class="section-divider"></div>
-                    </div>
-                </div>
-            </div>
+      <!-- Fixed Left Side - Purple Shape with Overlapping Image -->
+      <div class="left-panel">
+        <div class="purple-shape"></div>
+        <div class="image-container">
+          <img
+            id="currentImage"
+            src="https://images.pexels.com/photos/1181671/pexels-photo-1181671.jpeg?auto=compress&cs=tinysrgb&w=400"
+            alt="Current section"
+            class="section-image"
+          />
         </div>
+      </div>
+
+      <!-- Right Side - Scrollable Content -->
+      <div class="right-panel">
+        <div class="content-container">
+          <!-- Header - Empty space for scroll -->
+          <div class="header"></div>
+
+          <!-- Sections -->
+          <div class="section active" id="hack-on-hills">
+            <h2 class="section-title">Conduct Hack on Hills</h2>
+            <p class="section-description">
+              North India's biggest student-run hackathon, powered by our robust
+              event management and judging platform with real-time updates and
+              seamless participant experience.
+            </p>
+            <div class="section-divider"></div>
+          </div>
+
+          <div class="section inactive" id="nimbus-app">
+            <h2 class="section-title">Nimbus App</h2>
+            <p class="section-description">
+              A comprehensive platform for NIT Hamirpur's annual tech fest,
+              offering schedules, live updates, interactive maps, and
+              streamlined event registration features.
+            </p>
+            <div class="section-divider"></div>
+          </div>
+
+          <div class="section inactive" id="hillfair-app">
+            <h2 class="section-title">Hillfair App</h2>
+            <p class="section-description">
+              The official app for NIT Hamirpur's cultural fest, blending
+              vibrant UI with seamless user experience to celebrate student
+              creativity and cultural diversity through innovative features.
+            </p>
+            <div class="section-divider"></div>
+          </div>
+
+          <!-- Extra space for scrolling -->
+          <div class="scroll-spacer"></div>
+        </div>
+      </div>
     </div>
 
     <script>
-        // Intersection Observer for scroll animations
-        const observerOptions = {
-            threshold: 0.3,
-            rootMargin: '-50px 0px -50px 0px'
-        };
+      // Section data
+      const sections = [
+        {
+          id: "hack-on-hills",
+          title: "Conduct Hack on Hills",
+          description:
+            "North India's biggest student-run hackathon, powered by our robust event management and judging platform with real-time updates and seamless participant experience.",
+          image:
+            "https://images.pexels.com/photos/1181671/pexels-photo-1181671.jpeg?auto=compress&cs=tinysrgb&w=400",
+        },
+        {
+          id: "nimbus-app",
+          title: "Nimbus App",
+          description:
+            "A comprehensive platform for NIT Hamirpur's annual tech fest, offering schedules, live updates, interactive maps, and streamlined event registration features.",
+          image:
+            "https://images.pexels.com/photos/1181244/pexels-photo-1181244.jpeg?auto=compress&cs=tinysrgb&w=400",
+        },
+        {
+          id: "hillfair-app",
+          title: "Hillfair App",
+          description:
+            "The official app for NIT Hamirpur's cultural fest, blending vibrant UI with seamless user experience to celebrate student creativity and cultural diversity through innovative features.",
+          image:
+            "https://images.pexels.com/photos/1181316/pexels-photo-1181316.jpeg?auto=compress&cs=tinysrgb&w=400",
+        },
+      ];
 
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                const section = entry.target;
-                
-                if (entry.isIntersecting) {
-                    section.classList.add('fade-in');
-                    section.classList.remove('fade-out');
-                } else {
-                    section.classList.add('fade-out');
-                    section.classList.remove('fade-in');
-                }
-            });
-        }, observerOptions);
+      let activeSection = 0;
+      const currentImage = document.getElementById("currentImage");
+      const sectionElements = document.querySelectorAll(".section");
 
-        // Observe all sections
-        document.querySelectorAll('.animate-section').forEach(section => {
-            observer.observe(section);
-        });
+      function handleScroll() {
+        const scrollPosition = window.scrollY;
+        const windowHeight = window.innerHeight;
+        const middleOfScreen = scrollPosition + windowHeight / 2;
 
-        // Additional scroll effects for smoother animations
-        let ticking = false;
+        // Header takes up first viewport
+        const headerHeight = windowHeight;
 
-        function updateScrollEffects() {
-            const scrollY = window.scrollY;
-            const sections = document.querySelectorAll('.animate-section');
-            
-            sections.forEach((section, index) => {
-                const rect = section.getBoundingClientRect();
-                const isVisible = rect.top < window.innerHeight && rect.bottom > 0;
-                
-                if (isVisible) {
-                    const scrollProgress = Math.max(0, Math.min(1, 
-                        (window.innerHeight - rect.top) / (window.innerHeight + rect.height)
-                    ));
-                    
-                    // Apply subtle transform based on scroll progress
-                    const translateY = (1 - scrollProgress) * 20;
-                    const opacity = Math.max(0.3, scrollProgress);
-                    
-                    section.style.transform = `translateY(${translateY}px)`;
-                    section.style.opacity = opacity;
-                }
-            });
-            
-            ticking = false;
+        if (middleOfScreen < headerHeight) {
+          activeSection = -1; // No section active in header
+        } else {
+          // Calculate which section's middle point is closest to screen middle
+          const scrollAfterHeader = middleOfScreen - headerHeight;
+          const sectionHeight = windowHeight * 0.8;
+
+          // Find which section the middle of the screen is currently viewing
+          const currentSectionIndex = Math.floor(
+            scrollAfterHeader / sectionHeight
+          );
+
+          // Ensure we don't go beyond available sections
+          const validSectionIndex = Math.max(
+            0,
+            Math.min(currentSectionIndex, sections.length - 1)
+          );
+          activeSection = validSectionIndex;
         }
 
-        function requestTick() {
-            if (!ticking) {
-                requestAnimationFrame(updateScrollEffects);
-                ticking = true;
-            }
+        updateImageAndSections();
+      }
+
+      function updateImageAndSections() {
+        // Update image
+        if (activeSection >= 0 && activeSection < sections.length) {
+          currentImage.src = sections[activeSection].image;
+        } else {
+          currentImage.src = sections[0].image;
         }
 
-        window.addEventListener('scroll', requestTick);
-        
-        // Initial load animation
-        window.addEventListener('load', () => {
-            setTimeout(() => {
-                document.querySelector('.main-title').style.opacity = '1';
-                document.querySelector('.main-title').style.transform = 'translateY(0)';
-            }, 300);
+        // Update section states
+        sectionElements.forEach((section, index) => {
+          if (index <= activeSection) {
+            section.classList.remove("inactive");
+            section.classList.add("active");
+          } else {
+            section.classList.remove("active");
+            section.classList.add("inactive");
+          }
         });
+      }
+
+      // Add scroll event listener
+      window.addEventListener("scroll", handleScroll);
+
+      // Call once to set initial state
+      handleScroll();
     </script>
-</body>
-</html>
+  </body>
+
