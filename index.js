@@ -8,14 +8,12 @@ const PORT = 8000 || process.env.PORT
 
 const userRouter = require("./routes/user")
 const memberRouter = require("./routes/member")
-const cookieParser = require("cookie-parser")
 
 connectMongo('mongodb://127.0.0.1:27017/AppTeam')
 .then(() => console.log("MongoDB connected"))
 .catch((err) => console.log(`Mongo error: ${err}`))
 
 app.use(express.urlencoded({ extended: false }))
-app.use(cookieParser())
 app.use(express.static("public"))
 
 app.set("view engine", "ejs")

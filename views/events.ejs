@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <title>EVENTS</title>
+    <style>
+      :root {
+        font-family: "ubuntu", sans-serif;
+        line-height: 1.6;
+        font-weight: 400;
+        color: rgba(255, 255, 255, 0.9);
+        background-color: #140b29;
+        font-synthesis: none;
+        text-rendering: optimizeLegibility;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        background-color: #140b29;
+        color: rgba(255, 255, 255, 0.9);
+        overflow-x: hidden;
+      }
+
+      #app {
+        min-height: 100vh;
+        width: 100%;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 2rem;
+        position: relative;
+      }
+
+      .main-title {
+        font-size: 4rem;
+        font-family: 'ubuntu', sans-serif;
+        font-weight: bold;
+        text-align: center;
+        margin: 2rem 0 4rem 0;
+        background:#ca82ff ;
+        background-size: 300% 300%;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        animation: gradientShift 6s ease infinite;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+      }
+
+      @keyframes gradientShift {
+        0% {
+          background-position: 0% 50%;
+        }
+        50% {
+          background-position: 100% 50%;
+        }
+        100% {
+          background-position: 0% 50%;
+        }
+      }
+
+      .event-section {
+        text-align: center;
+        margin-bottom: 4rem;
+      }
+
+      .event-title {
+        font-size: clamp(2rem, 5vw, 3rem);
+        font-weight: 600;
+        margin-bottom: 1.5rem;
+        color: #ffffff;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+      }
+
+      .event-description {
+        font-size: clamp(1rem, 2.5vw, 1.2rem);
+        line-height: 1.8;
+        max-width: 800px;
+        margin: 0 auto 3rem auto;
+        color: rgba(255, 255, 255, 0.8);
+        text-align: justify;
+      }
+
+      .images-container {
+        position: relative;
+        min-height: 120vh;
+        margin-top: 2rem;
+      }
+
+      .image-item {
+        position: absolute;
+        width: 300px;
+        height: 200px;
+        border-radius: 15px;
+        margin: 10rem;
+        overflow: hidden;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        opacity: 0;
+        transform: translateY(50px) scale(0.9);
+      }
+
+      .image-item img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.4s ease;
+      }
+
+      .image-item:hover img {
+        transform: scale(1.1);
+      }
+
+      .image-item:hover {
+        transform: translateY(-10px) scale(1.05);
+        box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
+      }
+
+      .image-item.left {
+        left: 10%;
+      }
+
+      .image-item.right {
+        right: 10%;
+      }
+
+      .image-item:nth-child(1) {
+        top: 10px;
+      }
+
+      .image-item:nth-child(2) {
+        top: 100px;
+      }
+
+      .image-item:nth-child(3) {
+        top: 200px;
+      }
+
+      .image-item:nth-child(4) {
+        top: 300px;
+      }
+
+      .image-item:nth-child(5) {
+        top: 400px;
+      }
+
+      .image-item:nth-child(6) {
+        top: 500px;
+      }
+
+      .fade-in {
+        opacity: 0;
+        transform: translateY(50px);
+        transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);  
+      }
+
+      .fade-in.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .image-item.visible {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+
+      /* Responsive Design */
+      @media (max-width: 768px) {
+        .container {
+          padding: 1rem;
+        }
+
+        .main-title {
+          margin: 1rem 0 2rem 0;
+        }
+
+        .event-section {
+          margin-bottom: 2rem;
+        }
+
+        .event-description {
+          text-align: left;
+          margin-bottom: 2rem;
+        }
+
+        .image-item {
+          width: 250px;
+          height: 167px;
+          position: relative;
+          margin: 20px auto;
+          left: 0 !important;
+          right: 0 !important;
+          display: block;
+        }
+
+        .images-container {
+          min-height: auto;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          gap: 20px;
+        }
+
+        .image-item:nth-child(n) {
+          top: auto !important;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .image-item {
+          width: 200px;
+          height: 133px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <%- include('./partials/nav') %>
+    <div id="app">
+      <div class="container">
+        <h1 class="main-title fade-in">EVENTS</h1>
+
+        <div class="event-section">
+          <h2 class="event-title fade-in">HACK ON HILLS</h2>
+          <p class="event-description fade-in">
+            HackonHills 6.0, organized by our App Team at NIT Hamirpur, was a landmark event that brought together innovators, developers, and tech enthusiasts from across the region. As North India's largest hackathon, it featured 36 hours of nonstop coding, problem-solving, and collaboration. From ideation to execution, our team led the entire initiative—creating an environment where creativity thrived and groundbreaking solutions came to life.
+
+
+          </p>
+        </div>
+
+        <div class="images-container">
+          <div class="image-item left fade-in" data-delay="100">
+            <img
+              src="/events/hoh/HOH1.jpg"
+              alt="Event Image 1"
+            />
+          </div>
+
+          <div class="image-item right fade-in" data-delay="200">
+            <img
+              src="/events/hoh/HOH2.jpg"
+              alt="Event Image 2"
+            />
+          </div>
+
+          <div class="image-item left fade-in" data-delay="300">
+            <img
+              src="/events/hoh/HOH3.jpg"
+              alt="Event Image 3"
+            />
+          </div>
+
+          <div class="image-item right fade-in" data-delay="400">
+            <img
+              src="/events/hoh/HOH4.jpg"
+              alt="Event Image 4"
+            />
+          </div>
+
+          <div class="image-item left fade-in" data-delay="500">
+            <img
+              src="/events/hoh/HOH5.jpg"
+              alt="Event Image 5"
+            />
+          </div>
+
+          <div class="image-item right fade-in" data-delay="600">
+            <img
+              src="/events/hoh/HOH6.jpg"
+              alt="Event Image 6"
+            />
+          </div>
+        </div>
+      </div>
+
+    <div class="container">
+      <div class="event-section">
+          <h2 class="event-title fade-in">NIMBUS 2k25</h2>
+          <p class="event-description fade-in">
+            At Nimbus 2K25, our App Team proudly played a key role—not just as participants, but as contributors to the event's digital success. We developed the official Nimbus app, designed to enhance the user experience and streamline event interactions for thousands of attendees. Our efforts were recognized with the prestigious title of "Best Innovation Team", a testament to our commitment to building smart, impactful solutions that elevate the tech culture at NIT Hamirpur.
+
+
+          </p>
+        </div>
+
+        <div class="images-container">
+          <div class="image-item left fade-in" data-delay="100">
+            <img
+              src="/events/nimbus/NBS1.jpg"
+              alt="Event Image 1"
+            />
+          </div>
+
+          <div class="image-item right fade-in" data-delay="200">
+            <img
+              src="/events/nimbus/NBS2.jpg"
+              alt="Event Image 2"
+            />
+          </div>
+
+          <div class="image-item left fade-in" data-delay="300">
+            <img
+              src="/events/nimbus/NBS3.jpg"
+              alt="Event Image 3"
+            />
+          </div>
+
+          <div class="image-item right fade-in" data-delay="400">
+            <img
+              src="/events/nimbus/NBS4.jpg"
+              alt="Event Image 4"
+            />
+          </div>
+
+          <div class="image-item left fade-in" data-delay="500">
+            <img
+              src="/events/nimbus/NBS5.jpg"
+              alt="Event Image 5"
+            />
+          </div>
+
+          <div class="image-item right fade-in" data-delay="600">
+            <img
+              src="/events/nimbus/NBS6.jpg"
+              alt="Event Image 6"
+            />
+          </div>
+        </div>
+
+
+    <%- include('./partials/footer') %>
+
+    </div>
+
+    <script>
+      // Smooth scroll animation functionality
+      class ScrollAnimator {
+        constructor() {
+          this.elements = document.querySelectorAll(".fade-in");
+          this.init();
+        }
+
+        init() {
+          // Create intersection observer
+          this.observer = new IntersectionObserver(
+            (entries) => this.handleIntersection(entries),
+            {
+              threshold: 0.1,
+              rootMargin: "0px 0px -50px 0px",
+            }
+          );
+
+          // Observe all fade-in elements
+          this.elements.forEach((element, index) => {
+            // Add stagger delay for images
+            if (element.classList.contains("image-item")) {
+              const delay = element.dataset.delay || index * 100;
+              element.style.transitionDelay = `${delay}ms`;
+            }
+
+            this.observer.observe(element);
+          });
+
+          
+        }
+
+        handleIntersection(entries) {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("visible");
+
+              
+            }
+          });
+        }
+        
+        }
+      
+
+      // Initialize scroll animations when DOM is loaded
+      document.addEventListener("DOMContentLoaded", () => {
+        new ScrollAnimator();
+
+        // Add loading animation for the main title
+        setTimeout(() => {
+          const mainTitle = document.querySelector(".main-title");
+          if (mainTitle) {
+            mainTitle.classList.add("visible");
+          }
+        }, 300);
+
+        // Progressive enhancement for better performance
+        if ("IntersectionObserver" in window) {
+          console.log("Scroll animations initialized");
+        } else {
+          // Fallback for older browsers
+          document.querySelectorAll(".fade-in").forEach((el) => {
+            el.classList.add("visible");
+          });
+        }
+      });
+
+      // Add some interactive effects
+    //   document.addEventListener("mousemove", (e) => {
+    //     const cursor = { x: e.clientX, y: e.clientY };
+
+    //     // Subtle mouse tracking effect for images
+    //     document
+    //       .querySelectorAll(".image-item.visible")
+    //       .forEach((img, index) => {
+    //         const rect = img.getBoundingClientRect();
+    //         const center = {
+    //           x: rect.left + rect.width / 2,
+    //           y: rect.top + rect.height / 2,
+    //         };
+
+    //         const distance = Math.sqrt(
+    //           Math.pow(cursor.x - center.x, 2) +
+    //             Math.pow(cursor.y - center.y, 2)
+    //         );
+
+    //         if (distance < 200) {
+    //           const intensity = (200 - distance) / 200;
+    //           const moveX = (cursor.x - center.x) * intensity * 0.1;
+    //           const moveY = (cursor.y - center.y) * intensity * 0.1;
+
+    //           img.style.transform = `translate(${moveX}px, ${moveY}px) scale(1.02)`;
+    //         }
+    //       });
+    //   });
+
+      // Reset image positions when mouse leaves the viewport
+      document.addEventListener("mouseleave", () => {
+        document.querySelectorAll(".image-item").forEach((img) => {
+          img.style.transform = "translate(0px, 0px) scale(1)";
+        });
+      });
+    </script>
+  </body>
+</html>

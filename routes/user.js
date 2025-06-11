@@ -14,5 +14,8 @@ router.get('/projects', (req, res) => {
     return res.render("projects")
 })
 
+router.get('/events', (req, res) => {
+    return res.render("events")
+})
 
 module.exports = router
