@@ -43,7 +43,7 @@
 
       /* Hero Section */
       .hero-section {
-        height: 60vh;
+        height: 80vh;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -211,6 +211,243 @@
         height: 60%;
         background: linear-gradient(45deg, #f0f0f0, #d0d0d0);
         border-radius: 10px;
+      }
+      .app {
+        position: relative;
+        width: 100%;
+        min-height: 100vh;
+        display: flex;
+      }
+
+      /* Left Panel - Fixed Purple Shape with Image */
+      .left-panel {
+        position: sticky;
+        left: 0;
+        top: 0;
+        width: 50%;
+        height: 100vh;
+        z-index: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #140b29;
+        flex-shrink: 0;
+      }
+
+      .purple-shape {
+        position: absolute;
+        width: 320px;
+        height: 420px;
+        background: #a594f9;
+        z-index: 1;
+        clip-path: polygon(0% 15%, 85% 0%, 100% 85%, 15% 100%);
+        transform: rotate(-5deg);
+      }
+
+      .image-container {
+        position: relative;
+        z-index: 2;
+        width: 260px;
+        height: 360px;
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4);
+        transition: all 0.8s ease-in-out;
+        transform: rotate(-2deg);
+      }
+
+      .section-image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: all 0.8s ease-in-out;
+        opacity: 1;
+      }
+
+      .section-image.changing {
+        opacity: 0;
+        transform: scale(1.05);
+      }
+
+      /* Right Panel - Scrollable Content */
+      .right-panel {
+        /* margin-left: 50%; */
+        width: 50%;
+        min-height: 100vh;
+        background: #140b29;
+        position: relative;
+        z-index: 2;
+      }
+
+      .content-container {
+        padding: 0;
+        height: 100%;
+      }
+
+      /* Header */
+      .header {
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0 4rem;
+        background: #140b29;
+      }
+
+      .main-title {
+        font-size: 5rem;
+        font-weight: 400;
+        font-family: 'Gasoek One', sans-serif;
+        text-align: center;
+        color: #a594f9;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        line-height: 1.2;
+      }
+
+      /* Sections */
+      .section {
+        min-height: 80vh;
+        padding: 4rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        transition: all 0.6s ease-in-out;
+        position: relative;
+      }
+
+      .section.active {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .section.inactive {
+        opacity: 0.3;
+        transform: translateY(20px);
+      }
+
+      .section-title {
+        font-size: 2.5rem;
+        font-weight: 800;
+        margin-bottom: 2rem;
+        color: #a594f9;
+        line-height: 1.3;
+      }
+
+      .section-description {
+        font-size: 1.1rem;
+        line-height: 1.8;
+        color: #e2e8f0;
+        margin-bottom: 3rem;
+        max-width: 90%;
+        font-weight: 400;
+      }
+
+      .section-divider {
+        width: 100%;
+        height: 2px;
+        background: linear-gradient(90deg, #a594f9 0%, transparent 100%);
+        margin-top: auto;
+      }
+
+      .scroll-spacer {
+        height: 50vh;
+      }
+
+      /* Responsive Design */
+      @media (max-width: 1024px) {
+        .app {
+          flex-direction: column;
+        }
+
+        .left-panel {
+          position: relative;
+          width: 100%;
+          height: 50vh;
+        }
+
+        .purple-shape {
+          width: 280px;
+          height: 350px;
+        }
+
+        .image-container {
+          width: 220px;
+          height: 280px;
+        }
+
+        .right-panel {
+          margin-left: 0;
+          width: 100%;
+        }
+
+        .main-title {
+          font-size: 3rem;
+        }
+
+        .section {
+          padding: 2rem;
+          min-height: 60vh;
+        }
+
+        .section-title {
+          font-size: 2rem;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .purple-shape {
+          width: 240px;
+          height: 300px;
+        }
+
+        .image-container {
+          width: 180px;
+          height: 240px;
+        }
+
+        .main-title {
+          font-size: 2.5rem;
+        }
+
+        .section {
+          padding: 1.5rem;
+        }
+
+        .section-title {
+          font-size: 1.8rem;
+        }
+
+        .section-description {
+          font-size: 1rem;
+        }
+      }
+
+      /* Smooth scrolling with heavy feel */
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        scroll-behavior: smooth;
+      }
+
+      /* Custom scrollbar */
+      ::-webkit-scrollbar {
+        width: 8px;
+      }
+
+      ::-webkit-scrollbar-track {
+        background: #140b29;
+      }
+
+      ::-webkit-scrollbar-thumb {
+        background: #a594f9;
+        border-radius: 4px;
+      }
+
+      ::-webkit-scrollbar-thumb:hover {
+        background: #9084e8;
       }
 
       /* Animations */
@@ -389,13 +626,68 @@
               alt="VR/AR Development"
               class="domain-image"
             />
-            <div class="domain-title" style="color: #a594f9">
-              AR/VR
-            </div>
+            <div class="domain-title" style="color: #a594f9">AR/VR</div>
           </div>
         </div>
       </section>
-      
+    </div>
+    <div class="app">
+      <!-- Fixed Left Side - Purple Shape with Overlapping Image -->
+      <div class="left-panel">
+        <div class="purple-shape"></div>
+        <div class="image-container">
+          <img
+            id="currentImage"
+            src=""
+            alt="Current section"
+            class="section-image"
+          />
+        </div>
+      </div>
+
+      <!-- Right Side - Scrollable Content -->
+      <div class="right-panel">
+        <div class="content-container">
+          <!-- Header -->
+          <div class="header">
+            <h1 class="main-title">WHAT WE DO</h1>
+          </div>
+
+          <!-- Sections -->
+          <div class="section active" id="hack-on-hills">
+            <h2 class="section-title">Conduct Hack on Hills</h2>
+            <p class="section-description">
+              North India's biggest student-run hackathon, powered by our robust
+              event management and judging platform with real-time updates and
+              seamless participant experience.
+            </p>
+            <div class="section-divider"></div>
+          </div>
+
+          <div class="section inactive" id="nimbus-app">
+            <h2 class="section-title">Nimbus App</h2>
+            <p class="section-description">
+              A comprehensive platform for NIT Hamirpur's annual tech fest,
+              offering schedules, live updates, interactive maps, and
+              streamlined event registration features.
+            </p>
+            <div class="section-divider"></div>
+          </div>
+
+          <div class="section inactive" id="hillfair-app">
+            <h2 class="section-title">Hillfair App</h2>
+            <p class="section-description">
+              The official app for NIT Hamirpur's cultural fest, blending
+              vibrant UI with seamless user experience to celebrate student
+              creativity and cultural diversity through innovative features.
+            </p>
+            <div class="section-divider"></div>
+          </div>
+
+          <!-- Extra space for scrolling -->
+          <div class="scroll-spacer"></div>
+        </div>
+      </div>
     </div>
     <%- include("./partials/footer") %>
     <script>
@@ -444,6 +736,136 @@
           heroDevices.style.transform = "";
         }
       });
+      const sections = [
+        {
+          id: "hack-on-hills",
+          title: "Conduct Hack on Hills",
+          description:
+            "North India's biggest student-run hackathon, powered by our robust event management and judging platform with real-time updates and seamless participant experience.",
+          image:
+            "/homepage/hoh.webp",
+        },
+        {
+          id: "nimbus-app",
+          title: "Nimbus App",
+          description:
+            "A comprehensive platform for NIT Hamirpur's annual tech fest, offering schedules, live updates, interactive maps, and streamlined event registration features.",
+          image:
+            "/homepage/nimbus.webp",
+        },
+        {
+          id: "hillfair-app",
+          title: "Hillfair App",
+          description:
+            "The official app for NIT Hamirpur's cultural fest, blending vibrant UI with seamless user experience to celebrate student creativity and cultural diversity through innovative features.",
+          image:
+            "/homepage/hillfair.webp",
+        },
+      ];
+
+      let activeSection = 0;
+      const currentImage = document.getElementById("currentImage");
+      const sectionElements = document.querySelectorAll(".section");
+
+      function handleScroll() {
+    const scrollPosition = window.scrollY;
+    const windowHeight = window.innerHeight;
+    
+    const sectionElements = document.querySelectorAll('.section');
+    let newActiveSection = 0;
+    
+    sectionElements.forEach((section, index) => {
+        const rect = section.getBoundingClientRect();
+        
+        // Change image as soon as section starts entering viewport
+        if (rect.top <= windowHeight * 0.8) {
+            newActiveSection = index;
+        }
+    });
+    
+    if (newActiveSection !== activeSection) {
+        activeSection = newActiveSection;
+        updateImageAndSections();
+    }
+}
+        const scrollPosition = window.scrollY;
+        const windowHeight = window.innerHeight;
+        const middleOfScreen = scrollPosition + windowHeight / 2;
+
+        // Header takes up first viewport
+        const headerHeight = windowHeight;
+
+        if (middleOfScreen < headerHeight) {
+          activeSection = -1; // No section active in header
+        } else {
+          // Calculate which section's middle point is closest to screen middle
+          const scrollAfterHeader = middleOfScreen - headerHeight;
+          const sectionHeight = windowHeight * 0.8;
+
+          // Find which section the middle of the screen is currently viewing
+          const currentSectionIndex = Math.floor(
+            scrollAfterHeader / sectionHeight
+          );
+
+          // Ensure we don't go beyond available sections
+          const validSectionIndex = Math.max(
+            0,
+            Math.min(currentSectionIndex, sections.length - 1)
+          );
+          activeSection = validSectionIndex;
+        }
+
+        updateImageAndSections();
+      
+
+      function updateImageAndSections() {
+    // Update image based on active section
+    if (activeSection >= 0 && activeSection < sections.length) {
+        const newImageSrc = sections[activeSection].image;
+        if (currentImage.src !== newImageSrc) {
+            currentImage.classList.add('changing');
+            setTimeout(() => {
+                currentImage.src = newImageSrc;
+                currentImage.classList.remove('changing');
+            }, 200);
+        }
+    }
+
+    // Update section states
+    sectionElements.forEach((section, index) => {
+        if (index === activeSection) {
+            section.classList.remove('inactive');
+            section.classList.add('active');
+        } else {
+            section.classList.remove('active');
+            section.classList.add('inactive');
+        }
+    });
+}
+        // Update image
+        if (activeSection >= 0 && activeSection < sections.length) {
+          currentImage.src = sections[activeSection].image;
+        } else {
+          currentImage.src = sections[0].image;
+        }
+
+        // Update section states
+        sectionElements.forEach((section, index) => {
+          if (index <= activeSection) {
+            section.classList.remove("inactive");
+            section.classList.add("active");
+          } else {
+            section.classList.remove("active");
+            section.classList.add("inactive");
+          }
+        });
+      
+
+      // Add scroll event listener
+      window.addEventListener("scroll", handleScroll);
+
+      // Call once to set initial state
+      handleScroll();
     </script>
   </body>
 </html>
