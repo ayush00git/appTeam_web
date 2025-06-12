@@ -354,6 +354,324 @@
         height: 50vh;
       }
 
+      .faq-container {
+        min-height: 200vh;
+        background-color: #a594f9;
+      }
+
+      /* Hero Section */
+      .faq-hero-section {
+        position: relative;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 0 1rem;
+        overflow: visible;
+      }
+
+      .faq-hero-content {
+        position: relative;
+        z-index: 2;
+        text-align: center;
+        transition: all 0.3s ease-out;
+      }
+
+      .faq-hero-title {
+        font-family: "Gasoek One", cursive;
+        font-size: clamp(3rem, 8vw, 6rem);
+        font-weight: 400;
+        margin-bottom: 2rem;
+        color: #140b29;
+        letter-spacing: -0.02em;
+        line-height: 1.1;
+        position: relative;
+        z-index: 3;
+      }
+
+      .decorative-card {
+        position: relative;
+        margin: 0 auto;
+        width: 320px;
+        height: 192px;
+        background: white;
+        border-radius: 1rem;
+        box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+        overflow: hidden;
+      }
+
+      .card-background {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(135deg, #f3e8ff, #dbeafe);
+      }
+
+      .decoration-1 {
+        position: absolute;
+        top: 1rem;
+        left: 1rem;
+        width: 3rem;
+        height: 3rem;
+        background: #fb923c;
+        border-radius: 0.75rem;
+        transform: rotate(12deg);
+      }
+
+      .decoration-2 {
+        position: absolute;
+        top: 2rem;
+        right: 1.5rem;
+        width: 2rem;
+        height: 2rem;
+        background: #f9a8d4;
+        border-radius: 50%;
+      }
+
+      .decoration-3 {
+        position: absolute;
+        bottom: 1.5rem;
+        left: 1.5rem;
+        width: 4rem;
+        height: 4rem;
+        background: #60a5fa;
+        border-radius: 1rem;
+        transform: rotate(-6deg);
+      }
+
+      .main-icon-container {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .main-icon-bg {
+        width: 5rem;
+        height: 5rem;
+        background: #e9d5ff;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 0.5rem;
+      }
+
+      .corner-icon {
+        position: absolute;
+        bottom: 1rem;
+        right: 1rem;
+        color: #9333ea;
+      }
+
+      .scroll-indicator {
+        position: absolute;
+        bottom: 2rem;
+        animation: bounce 2s infinite;
+      }
+
+      @keyframes bounce {
+        0%,
+        20%,
+        53%,
+        80%,
+        100% {
+          transform: translateY(0);
+        }
+        40%,
+        43% {
+          transform: translateY(-10px);
+        }
+        70% {
+          transform: translateY(-5px);
+        }
+      }
+
+      /* FAQ Cards Section */
+      .faq-section {
+        position: relative;
+        min-height: 100vh;
+        padding: 5rem 1rem;
+      }
+
+      .faq-grid {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 2rem;
+      }
+
+      .faq-card {
+        aspect-ratio: 1;
+        border-radius: 1rem;
+        box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+        transition: all 0.5s ease-out;
+        cursor: pointer;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .faq-card:hover {
+        transform: scale(1.02) translateY(-8px);
+      }
+
+      .faq-card.security {
+        background: #9333ea;
+      }
+
+      .faq-card.wallet {
+        background: #10b981;
+      }
+
+      .faq-card.speed {
+        background: #f97316;
+      }
+
+      .faq-card.support {
+        background: #f87171;
+      }
+
+      .card-content {
+        padding: 1.5rem;
+        color: white;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .card-header {
+        display: flex;
+        align-items: flex-start;
+        gap: 1rem;
+        margin-bottom: 1rem;
+      }
+
+      .icon-container {
+        background: rgba(255, 255, 255, 0.2);
+        padding: 0.75rem;
+        border-radius: 0.5rem;
+        flex-shrink: 0;
+      }
+
+      .card-question {
+        font-size: 1.1rem;
+        font-weight: 700;
+        margin-bottom: 0.5rem;
+        line-height: 1.2;
+      }
+
+      .card-answer {
+        transition: all 0.5s ease-out;
+        overflow: hidden;
+        max-height: 0;
+        opacity: 0;
+        flex-grow: 1;
+      }
+
+      .faq-card:hover .card-answer {
+        max-height: 200px;
+        opacity: 1;
+      }
+
+      .answer-content {
+        padding-top: 1rem;
+        border-top: 1px solid rgba(255, 255, 255, 0.2);
+      }
+
+      .answer-text {
+        color: rgba(255, 255, 255, 0.9);
+        line-height: 1.6;
+        font-size: 0.875rem;
+      }
+
+      .hover-indicator {
+        margin-top: auto;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        color: rgba(255, 255, 255, 0.7);
+        font-size: 0.875rem;
+        padding-top: 1rem;
+      }
+
+      .chevron {
+        transition: transform 0.3s ease;
+        width: 16px;
+        height: 16px;
+      }
+
+      .faq-card:hover .chevron {
+        transform: rotate(180deg);
+      }
+
+      .bottom-spacing {
+        height: 1rem;
+      }
+
+      /* Icons */
+      .icon {
+        width: 24px;
+        height: 24px;
+        fill: currentColor;
+      }
+
+      .help-icon {
+        width: 32px;
+        height: 32px;
+        color: #9333ea;
+      }
+
+      .help-icon-large {
+        width: 40px;
+        height: 40px;
+        color: #9333ea;
+      }
+
+      /* Responsive Design */
+      @media (max-width: 768px) {
+        .faq-hero-title {
+          font-size: 3rem;
+          margin-bottom: 1.5rem;
+        }
+
+        .decorative-card {
+          width: 280px;
+          height: 168px;
+        }
+
+        .faq-grid {
+          grid-template-columns: 1fr;
+          max-width: 400px;
+        }
+
+        .card-content {
+          padding: 1.5rem;
+        }
+
+        .card-question {
+          font-size: 1.1rem;
+        }
+      }
+
+      @media (min-width: 1200px) {
+        .faq-hero-title {
+          font-size: 6rem;
+        }
+
+        .faq-grid {
+          grid-template-columns: repeat(4, 1fr);
+          gap: 1.5rem;
+        }
+      }
+      @media (min-width: 768px) and (max-width: 1199px) {
+    .faq-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
+    }
+}
       /* Responsive Design */
       @media (max-width: 1024px) {
         .app {
@@ -689,7 +1007,204 @@
         </div>
       </div>
     </div>
-    
+    <div class="faq-container">
+      <!-- Hero Section -->
+      <div class="faq-hero-section">
+        <div class="faq-hero-content" id="faqheroContent">
+          <h1 class="faq-hero-title">Frequently asked questions</h1>
+
+          <!-- Decorative Card -->
+          <div class="decorative-card">
+            <div class="card-background">
+              <div class="decoration-1"></div>
+              <div class="decoration-2"></div>
+              <div class="decoration-3"></div>
+              <div class="corner-icon">
+                <svg
+                  class="help-icon"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <circle cx="12" cy="12" r="10" />
+                  <path d="m9,9a3,3 0 1,1 6,0c0,2 -3,3 -3,3" />
+                  <path d="m12,17 l.01,0" />
+                </svg>
+              </div>
+              <div class="main-icon-container">
+                <div class="main-icon-bg">
+                  <svg
+                    class="help-icon-large"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <circle cx="12" cy="12" r="10" />
+                    <path d="m9,9a3,3 0 1,1 6,0c0,2 -3,3 -3,3" />
+                    <path d="m12,17 l.01,0" />
+                  </svg>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Scroll Indicator -->
+        <div class="scroll-indicator" id="scrollIndicator">
+          <svg
+            width="32"
+            height="32"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="#140b29"
+            stroke-width="2"
+          >
+            <polyline points="6,9 12,15 18,9" />
+          </svg>
+        </div>
+      </div>
+
+      <!-- FAQ Cards Section -->
+      <div class="faq-section">
+        <div class="faq-grid" id="faqGrid">
+          <div class="faq-card security" data-id="1">
+            <div class="card-content">
+              <div class="card-header">
+                <div class="icon-container">
+                  <svg
+                    class="icon"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                  </svg>
+                </div>
+                <div>
+                  <h3 class="card-question">How can I join the AP Team?</h3>
+                </div>
+              </div>
+
+              <div class="card-answer">
+                <div class="answer-content">
+                  <p class="answer-text">
+                    You can join by filling out the recruitment form we share at the start of each semester. Follow our social media for updates!
+                  </p>
+                </div>
+              </div>
+
+              
+            </div>
+          </div>
+
+          <div class="faq-card wallet" data-id="2">
+            <div class="card-content">
+              <div class="card-header">
+                <div class="icon-container">
+                  <svg
+                    class="icon"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <path d="M21 12V7H5a2 2 0 0 1 0-4h14v4" />
+                    <path d="M3 5v14a2 2 0 0 0 2 2h16v-5" />
+                    <path d="M18 12a2 2 0 0 0 0 4h4v-4Z" />
+                  </svg>
+                </div>
+                <div>
+                  <h3 class="card-question">
+                    Do I need any prior experience to join?
+                  </h3>
+                </div>
+              </div>
+
+              <div class="card-answer">
+                <div class="answer-content">
+                  <p class="answer-text">
+                    No! We welcome beginners. If you're eager to learn, we’ll help you grow with training and mentorship.
+                  </p>
+                </div>
+              </div>
+
+              
+            </div>
+          </div>
+
+          <div class="faq-card speed" data-id="3">
+            <div class="card-content">
+              <div class="card-header">
+                <div class="icon-container">
+                  <svg
+                    class="icon"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <polygon points="13,2 3,14 12,14 11,22 21,10 12,10 13,2" />
+                  </svg>
+                </div>
+                <div>
+                  <h3 class="card-question">What kind of projects do you work on?</h3>
+                </div>
+              </div>
+
+              <div class="card-answer">
+                <div class="answer-content">
+                  <p class="answer-text">
+                   In the App Team, we develop apps for college fests like Nimbus and Hillfair, build websites, and organize the annual Hack on Hills hackathon.
+                  </p>
+                </div>
+              </div>
+
+              
+            </div>
+          </div>
+
+          <div class="faq-card support" data-id="4">
+            <div class="card-content">
+              <div class="card-header">
+                <div class="icon-container">
+                  <svg
+                    class="icon"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
+                    <circle cx="9" cy="7" r="4" />
+                    <path d="m22,21-3-3m2-5a5,5 0 1,1-10,0 5,5 0 0,1 10,0Z" />
+                  </svg>
+                </div>
+                <div>
+                  <h3 class="card-question">Can first-year students join the team</h3>
+                </div>
+              </div>
+
+              <div class="card-answer">
+                <div class="answer-content">
+                  <p class="answer-text">
+                    Yes! First-year students are encouraged to join and explore different domains to find what interests them most.
+                  </p>
+                </div>
+              </div>
+
+              
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bottom spacing -->
+      <div class="bottom-spacing"></div>
+    </div>
+
     <%- include("./partials/footer") %>
     <script>
       // Scroll Animation Observer
@@ -862,6 +1377,55 @@
 
       // Call once to set initial state
       handleScroll();
+      let scrollY = 0;
+      let hoveredCard = null;
+
+      // Handle scroll effects
+      function faqhandleScroll() {
+        const faqSection = document.querySelector(".faq-hero-section");
+        const heroContent = document.getElementById("faqheroContent");
+        const scrollIndicator = document.getElementById("scrollIndicator");
+        const faqGrid = document.getElementById("faqGrid");
+
+        // Get the distance from the top of the FAQ section to the top of the viewport
+        const faqRect = faqSection.getBoundingClientRect();
+        const relativeScroll = Math.max(0, -faqRect.top);
+
+        // Hero section effects (use relativeScroll)
+        const heroOpacity = Math.max(0, 1 - relativeScroll / 900);
+        const heroScale = Math.max(0.85, 1 - relativeScroll / 1800);
+
+        heroContent.style.opacity = heroOpacity;
+        heroContent.style.transform = `scale(${heroScale})`;
+        scrollIndicator.style.opacity = heroOpacity;
+
+        // FAQ cards effects (use relativeScroll)
+        const cardsTranslateY = Math.max(0, 100 - relativeScroll / 12);
+        const cardsOpacity = Math.min(1, relativeScroll / 900);
+
+        faqGrid.style.transform = `translateY(${cardsTranslateY}px)`;
+        faqGrid.style.opacity = cardsOpacity;
+      }
+
+      // Initialize
+      window.addEventListener("scroll", faqhandleScroll);
+      document.addEventListener("DOMContentLoaded", () => {
+        setupCardHovers();
+        faqhandleScroll(); // Initial call
+      });
+
+      // Smooth scrolling for any internal links (if needed)
+      document.addEventListener("click", (e) => {
+        if (e.target.closest('a[href^="#"]')) {
+          e.preventDefault();
+          const target = document.querySelector(
+            e.target.closest("a").getAttribute("href")
+          );
+          if (target) {
+            target.scrollIntoView({ behavior: "smooth" });
+          }
+        }
+      });
     </script>
   </body>
 </html>
