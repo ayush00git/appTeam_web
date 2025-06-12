@@ -297,7 +297,7 @@
       .main-title {
         font-size: 5rem;
         font-weight: 400;
-        font-family: 'Gasoek One', sans-serif;
+        font-family: "Gasoek One", sans-serif;
         text-align: center;
         color: #a594f9;
         letter-spacing: 0.1em;
@@ -448,6 +448,114 @@
 
       ::-webkit-scrollbar-thumb:hover {
         background: #9084e8;
+      }
+      /* Contact Section - positioned to be at bottom of website */
+      .contact-section {
+        background-color: #a594f9;
+        padding: 80px 20px;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .contact-container {
+        max-width: 1200px;
+        width: 100%;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 60px;
+        align-items: start;
+      }
+
+      .contact-title {
+        font-size: 7rem;
+        font-weight: 400;
+        font-family: 'Gasoek One', sans-serif;
+        color: #000; 
+        margin-top: 10rem;
+      }
+
+      /* Right side - Form */
+      .form-container {
+        background-color: rgba(0, 0, 0, 0.3);
+        border-radius: 20px;
+        padding: 40px;
+        min-height: 500px;
+      }
+
+      .form-group {
+        margin-bottom: 30px;
+      }
+
+      .form-group label {
+        display: block;
+        color: #fff;
+        font-size: 1.5rem;
+        
+        margin-bottom: 10px;
+        opacity: 0.9;
+      }
+
+      .form-group input,
+      .form-group textarea {
+        width: 100%;
+        padding: 15px;
+        border: none;
+        border-radius: 10px;
+        background-color: rgba(255, 255, 255, 0.1);
+        color: #fff;
+        font-size: 1rem;
+        outline: none;
+        transition: background-color 0.3s ease;
+      }
+
+      .form-group input::placeholder,
+      .form-group textarea::placeholder {
+        color: rgba(255, 255, 255, 0.6);
+      }
+
+      .form-group input:focus,
+      .form-group textarea:focus {
+        background-color: rgba(255, 255, 255, 0.2);
+      }
+
+      .form-group textarea {
+        min-height: 120px;
+        resize: vertical;
+      }
+
+      .submit-btn {
+        background-color: rgba(255, 255, 255, 0.2);
+        color: #fff;
+        padding: 15px 40px;
+        border: none;
+        border-radius: 10px;
+        font-size: 1.3rem;
+      
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        width: 100%;
+      }
+
+      .submit-btn:hover {
+        background-color: rgba(255, 255, 255, 0.3);
+      }
+
+      /* Responsive Design */
+      @media (max-width: 768px) {
+        .contact-container {
+          grid-template-columns: 1fr;
+          gap: 40px;
+        }
+
+        .contact-title {
+          font-size: 2.5rem;
+        }
+
+        .conatct-image-container {
+          min-height: 250px;
+        }
       }
 
       /* Animations */
@@ -689,6 +797,45 @@
         </div>
       </div>
     </div>
+    <section class="contact-section">
+      <div class="contact-container">
+        <h2 class="contact-title">Contact Us</h2>
+        <div class="form-container">
+          <form>
+            <div class="form-group">
+              <label for="name">Name</label>
+              <input
+                type="text"
+                id="name"
+                name="name"
+                placeholder="Enter your name"
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                placeholder="Enter your email address"
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="query">Query</label>
+              <textarea
+                id="query"
+                name="query"
+                placeholder="Your message"
+              ></textarea>
+            </div>
+
+            <button type="submit" class="submit-btn">Submit</button>
+          </form>
+        </div>
+      </div>
+    </section>
     <%- include("./partials/footer") %>
     <script>
       // Scroll Animation Observer
@@ -742,24 +889,21 @@
           title: "Conduct Hack on Hills",
           description:
             "North India's biggest student-run hackathon, powered by our robust event management and judging platform with real-time updates and seamless participant experience.",
-          image:
-            "/homepage/hoh.webp",
+          image: "/homepage/hoh.webp",
         },
         {
           id: "nimbus-app",
           title: "Nimbus App",
           description:
             "A comprehensive platform for NIT Hamirpur's annual tech fest, offering schedules, live updates, interactive maps, and streamlined event registration features.",
-          image:
-            "/homepage/nimbus.webp",
+          image: "/homepage/nimbus.webp",
         },
         {
           id: "hillfair-app",
           title: "Hillfair App",
           description:
             "The official app for NIT Hamirpur's cultural fest, blending vibrant UI with seamless user experience to celebrate student creativity and cultural diversity through innovative features.",
-          image:
-            "/homepage/hillfair.webp",
+          image: "/homepage/hillfair.webp",
         },
       ];
 
@@ -768,90 +912,71 @@
       const sectionElements = document.querySelectorAll(".section");
 
       function handleScroll() {
-    const scrollPosition = window.scrollY;
-    const windowHeight = window.innerHeight;
-    
-    const sectionElements = document.querySelectorAll('.section');
-    let newActiveSection = 0;
-    
-    sectionElements.forEach((section, index) => {
-        const rect = section.getBoundingClientRect();
-        
-        // Change image as soon as section starts entering viewport
-        if (rect.top <= windowHeight * 0.8) {
-            newActiveSection = index;
-        }
-    });
-    
-    if (newActiveSection !== activeSection) {
-        activeSection = newActiveSection;
-        updateImageAndSections();
-    }
-}
         const scrollPosition = window.scrollY;
         const windowHeight = window.innerHeight;
-        const middleOfScreen = scrollPosition + windowHeight / 2;
 
-        // Header takes up first viewport
-        const headerHeight = windowHeight;
+        const sectionElements = document.querySelectorAll(".section");
+        let newActiveSection = 0;
 
-        if (middleOfScreen < headerHeight) {
-          activeSection = -1; // No section active in header
-        } else {
-          // Calculate which section's middle point is closest to screen middle
-          const scrollAfterHeader = middleOfScreen - headerHeight;
-          const sectionHeight = windowHeight * 0.8;
+        sectionElements.forEach((section, index) => {
+          const rect = section.getBoundingClientRect();
 
-          // Find which section the middle of the screen is currently viewing
-          const currentSectionIndex = Math.floor(
-            scrollAfterHeader / sectionHeight
-          );
+          // Change image as soon as section starts entering viewport
+          if (rect.top <= windowHeight * 0.8) {
+            newActiveSection = index;
+          }
+        });
 
-          // Ensure we don't go beyond available sections
-          const validSectionIndex = Math.max(
-            0,
-            Math.min(currentSectionIndex, sections.length - 1)
-          );
-          activeSection = validSectionIndex;
+        if (newActiveSection !== activeSection) {
+          activeSection = newActiveSection;
+          updateImageAndSections();
         }
+      }
+      const scrollPosition = window.scrollY;
+      const windowHeight = window.innerHeight;
+      const middleOfScreen = scrollPosition + windowHeight / 2;
 
-        updateImageAndSections();
-      
+      // Header takes up first viewport
+      const headerHeight = windowHeight;
+
+      if (middleOfScreen < headerHeight) {
+        activeSection = -1; // No section active in header
+      } else {
+        // Calculate which section's middle point is closest to screen middle
+        const scrollAfterHeader = middleOfScreen - headerHeight;
+        const sectionHeight = windowHeight * 0.8;
+
+        // Find which section the middle of the screen is currently viewing
+        const currentSectionIndex = Math.floor(
+          scrollAfterHeader / sectionHeight
+        );
+
+        // Ensure we don't go beyond available sections
+        const validSectionIndex = Math.max(
+          0,
+          Math.min(currentSectionIndex, sections.length - 1)
+        );
+        activeSection = validSectionIndex;
+      }
+
+      updateImageAndSections();
 
       function updateImageAndSections() {
-    // Update image based on active section
-    if (activeSection >= 0 && activeSection < sections.length) {
-        const newImageSrc = sections[activeSection].image;
-        if (currentImage.src !== newImageSrc) {
-            currentImage.classList.add('changing');
-            setTimeout(() => {
-                currentImage.src = newImageSrc;
-                currentImage.classList.remove('changing');
-            }, 200);
-        }
-    }
-
-    // Update section states
-    sectionElements.forEach((section, index) => {
-        if (index === activeSection) {
-            section.classList.remove('inactive');
-            section.classList.add('active');
-        } else {
-            section.classList.remove('active');
-            section.classList.add('inactive');
-        }
-    });
-}
-        // Update image
+        // Update image based on active section
         if (activeSection >= 0 && activeSection < sections.length) {
-          currentImage.src = sections[activeSection].image;
-        } else {
-          currentImage.src = sections[0].image;
+          const newImageSrc = sections[activeSection].image;
+          if (currentImage.src !== newImageSrc) {
+            currentImage.classList.add("changing");
+            setTimeout(() => {
+              currentImage.src = newImageSrc;
+              currentImage.classList.remove("changing");
+            }, 200);
+          }
         }
 
         // Update section states
         sectionElements.forEach((section, index) => {
-          if (index <= activeSection) {
+          if (index === activeSection) {
             section.classList.remove("inactive");
             section.classList.add("active");
           } else {
@@ -859,7 +984,24 @@
             section.classList.add("inactive");
           }
         });
-      
+      }
+      // Update image
+      if (activeSection >= 0 && activeSection < sections.length) {
+        currentImage.src = sections[activeSection].image;
+      } else {
+        currentImage.src = sections[0].image;
+      }
+
+      // Update section states
+      sectionElements.forEach((section, index) => {
+        if (index <= activeSection) {
+          section.classList.remove("inactive");
+          section.classList.add("active");
+        } else {
+          section.classList.remove("active");
+          section.classList.add("inactive");
+        }
+      });
 
       // Add scroll event listener
       window.addEventListener("scroll", handleScroll);
