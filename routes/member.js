@@ -25,13 +25,27 @@ const storage = multer.diskStorage({
     }
 })
 
-const upload = multer({storage})
+const fileFilter = function(req, file, cb) {
+    const allowedTypes = ['.png', '.jpg', '.jpeg', '.webp', '.heic']
+    const ext = path.extname(file.originalname).toLowerCase()
+    if(!allowedTypes.includes(ext)){
+        return cb(new Error(`Files format not supported`))
+    }
+    cb(null, true)
+}
 
+const upload = multer({storage, fileFilter})
+ 
 router.get('/newMember', (req, res) => {
-    return res.render("newMember")
+    return res.render("newMember", {error: null})
 })
 
-router.post('/newMember', upload.single('profileImageURL'), async(req, res) => {
+router.post('/newMember', async(req, res) => {
+    upload.single('profileImageURL')(req, res, async function(err){
+        if(err){
+            return res.render("newMember", {error: err.message})
+        }
+    })
     const { name, bio, role, githubURL, linkedInURL } = req.body
     const newMemb = await member.create({
         name,
@@ -44,4 +58,4 @@ router.post('/newMember', upload.single('profileImageURL'), async(req, res) => {
     return res.redirect('/member')
 })
 
-module.exports = router  
+module.exports = router 

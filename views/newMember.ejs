@@ -189,6 +189,9 @@
   <body>
     <%- include('./partials/nav') %>
   
+    <% if (error) { %>
+     <h3><%= error %></h3>
+    <% } %>
     <div class="form-card">
       <div class="decorative-element"></div>
       
