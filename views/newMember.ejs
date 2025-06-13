@@ -19,7 +19,7 @@
 
       body {
         background: #140b29;
-        font-family: 'ubuntu', sans-serif !important;
+        font-family: "ubuntu", sans-serif !important;
         min-height: 100vh;
         display: flex;
         align-items: center;
@@ -152,7 +152,57 @@
         letter-spacing: 1px;
         margin-top: 10px;
       }
+      .file-upload-label.uploading {
+        border-color: #667eea;
+        background: rgba(102, 126, 234, 0.1);
+        cursor: not-allowed;
+      }
 
+      .loader {
+        display: none;
+        width: 20px;
+        height: 20px;
+        border: 2px solid rgba(255, 255, 255, 0.3);
+        border-top: 2px solid #667eea;
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+      }
+
+      .loader.active {
+        display: block;
+      }
+
+      @keyframes spin {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+
+      .image-preview {
+        display: none;
+        margin-top: 12px;
+        text-align: center;
+      }
+
+      .image-preview img {
+        max-width: 120px;
+        max-height: 120px;
+        border-radius: 12px;
+        border: 2px solid rgba(255, 255, 255, 0.2);
+        object-fit: cover;
+      }
+
+      .image-preview.active {
+        display: block;
+      }
+
+      .submit-btn:disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+      }
       .decorative-element {
         position: absolute;
         width: 80px;
@@ -188,20 +238,18 @@
     </style>
   </head>
   <body>
-    <%- include('./partials/nav') %>
-  
-    <% if (error) { %>
-      <%- include('./partials/error') %>
-    <% } %>
+    <%- include('./partials/nav') %> <% if (error) { %> <%-
+    include('./partials/error') %> <% } %>
     <div class="form-card">
       <div class="decorative-element"></div>
-      
+
       <h1 class="title">Team Member's Details</h1>
 
       <form
         method="post"
         action="/member/newMember"
         enctype="multipart/form-data"
+        id="memberForm"
       >
         <div class="form-group">
           <label for="name">Full Name</label>
@@ -229,7 +277,7 @@
           <label for="bio">Tell a little about yourself</label>
           <input
             type="text"
-            id="email"
+            id="bio"
             name="bio"
             placeholder="Enter a tagline"
             required
@@ -239,7 +287,7 @@
           <label for="githubURL">Github Link 🔗</label>
           <input
             type="text"
-            id="email"
+            id="githubURL"
             name="githubURL"
             placeholder="Enter your github profile link"
             required
@@ -248,8 +296,8 @@
         <div class="form-group">
           <label for="linkedInURL">LinkedIn Link 🔗</label>
           <input
-            type="bio"
-            id="emlinkedInURL"
+            type="url"
+            id="linkedInURL"
             name="linkedInURL"
             placeholder="Enter your linkedin profile link"
             required
@@ -263,12 +311,21 @@
               type="file"
               id="profile-image"
               name="profileImageURL"
+              accept="image/*"
               required
             />
-            <label for="profile-image" class="file-upload-label">
-              <span class="upload-text">Choose Image</span>
-              <span class="upload-icon">📁</span>
+            <label for="profile-image" class="file-upload-label" id="fileLabel">
+              <div class="upload-content">
+                <span class="upload-text">Choose Image</span>
+                <div class="upload-icon-container">
+                  <span class="upload-icon" id="uploadIcon">📁</span>
+                  <div class="loader" id="loader"></div>
+                </div>
+              </div>
             </label>
+          </div>
+          <div class="image-preview" id="imagePreview">
+            <img id="previewImg" src="" alt="Preview" />
           </div>
         </div>
 
@@ -279,12 +336,99 @@
     <script>
       const fileInput = document.getElementById("profile-image");
       const uploadText = document.querySelector(".upload-text");
+      const uploadIcon = document.getElementById("uploadIcon");
+      const loader = document.getElementById("loader");
+      const fileLabel = document.getElementById("fileLabel");
+      const imagePreview = document.getElementById("imagePreview");
+      const previewImg = document.getElementById("previewImg");
+      const submitBtn = document.querySelector(".submit-btn");
 
       fileInput.addEventListener("change", function () {
         if (fileInput.files.length > 0) {
-          uploadText.textContent = fileInput.files[0].name;
+          const file = fileInput.files[0];
+
+          // Validate file type
+          if (!file.type.startsWith("image/")) {
+            alert("Please select a valid image file");
+            fileInput.value = "";
+            return;
+          }
+
+          // Show loader immediately
+          showLoader();
+
+          // Use FileReader to process the image (realistic upload simulation)
+          const reader = new FileReader();
+
+          reader.onloadstart = function () {
+            // Loader is already showing
+          };
+
+          reader.onload = function (e) {
+            // Simulate processing time
+            setTimeout(() => {
+              hideLoader();
+              uploadText.textContent = file.name;
+
+              // Show image preview
+              previewImg.src = e.target.result;
+              imagePreview.classList.add("active");
+            }, 800); // Realistic processing time
+          };
+
+          reader.onerror = function () {
+            hideLoader();
+            alert("Error reading file");
+            resetUploadUI();
+          };
+
+          // Start reading the file
+          reader.readAsDataURL(file);
         } else {
-          uploadText.textContent = "Choose Image";
+          resetUploadUI();
+        }
+      });
+
+      function showLoader() {
+        loader.classList.add("active");
+        uploadIcon.style.display = "none";
+        fileLabel.classList.add("uploading");
+        uploadText.textContent = "Processing...";
+        submitBtn.disabled = true;
+      }
+
+      function hideLoader() {
+        loader.classList.remove("active");
+        uploadIcon.style.display = "block";
+        fileLabel.classList.remove("uploading");
+        submitBtn.disabled = false;
+      }
+
+      function resetUploadUI() {
+        uploadText.textContent = "Choose Image";
+        imagePreview.classList.remove("active");
+        hideLoader();
+      }
+
+      // Optional: Handle drag and drop
+      fileLabel.addEventListener("dragover", function (e) {
+        e.preventDefault();
+        fileLabel.style.borderColor = "#667eea";
+      });
+
+      fileLabel.addEventListener("dragleave", function (e) {
+        e.preventDefault();
+        fileLabel.style.borderColor = "rgba(255, 255, 255, 0.3)";
+      });
+
+      fileLabel.addEventListener("drop", function (e) {
+        e.preventDefault();
+        fileLabel.style.borderColor = "rgba(255, 255, 255, 0.3)";
+
+        const files = e.dataTransfer.files;
+        if (files.length > 0) {
+          fileInput.files = files;
+          fileInput.dispatchEvent(new Event("change"));
         }
       });
     </script>
