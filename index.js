@@ -23,4 +23,7 @@ app.set("views", path.resolve("./views"))
 app.use("/", userRouter)
 app.use("/member", memberRouter)
 
+app.use((req, res, next) => {
+    res.status(404).render("404");
+})
 app.listen(PORT, () => console.log(`Server started at port http://localhost:${PORT}`))

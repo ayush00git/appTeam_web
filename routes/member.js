@@ -3,6 +3,7 @@ const router = express.Router()
 const member = require("../models/member")
 const multer = require("multer")
 const fs = require("fs")
+const sharp = require('sharp')
 const path = require("path")
 
 router.get('/', async(req, res) => {
@@ -10,19 +11,6 @@ router.get('/', async(req, res) => {
     return res.render("member", {
         newMembs
     })
-})
-
-const storage = multer.diskStorage({
-    destination: function(req, file, cb) {
-        // const uploadPath = path.resolve(`./public/uploads/${req.user.userName}`)
-        const uploadPath = path.resolve(`./public/uploads/${req.body.name}`)
-
-        fs.mkdirSync(uploadPath, { recursive: true })
-        cb(null, uploadPath)
-    },
-    filename: function(req, file, cb) {
-        cb(null, `${file.originalname}`)
-    }
 })
 
 const fileFilter = function(req, file, cb) {
@@ -34,7 +22,7 @@ const fileFilter = function(req, file, cb) {
     cb(null, true)
 }
 
-const upload = multer({storage, fileFilter})
+const upload = multer({storage: multer.memoryStorage(), fileFilter})
  
 router.get('/newMember', (req, res) => {
     return res.render("newMember", {error: null})
@@ -48,9 +36,25 @@ router.post('/newMember', (req, res) => {
         }
         const { name, bio, role, githubURL, linkedInURL } = req.body;
         try {
+            let profileImageURL;
+            if (req.file) {
+                const uploadPath = path.resolve(`./public/uploads/${name}`);
+                fs.mkdirSync(uploadPath, { recursive: true });
+                const webpFilename = `${path.parse(req.file.originalname).name}.webp`;
+                const webpPath = path.join(uploadPath, webpFilename);
+
+                // Convert to webp and save
+                await sharp(req.file.buffer)
+                    .rotate()    
+                    .webp({ quality: 80 })
+                    .toFile(webpPath);
+
+                profileImageURL = webpFilename;
+            }
+
             await member.create({
                 name,
-                profileImageURL: req.file ? req.file.filename : undefined,
+                profileImageURL,
                 role,
                 githubURL,
                 linkedInURL,

@@ -12,10 +12,6 @@
       href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;500;700&display=swap"
       rel="stylesheet"
     />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Gasoek+One&display=swap"
-      rel="stylesheet"
-    />
     <style>
       * {
         margin: 0;
@@ -34,6 +30,7 @@
         );
         min-height: 100vh;
         overflow-x: hidden;
+        user-select: none;
       }
 
       .container {
@@ -137,27 +134,6 @@
         animation: fadeInDown 1s ease-out 0.5s both;
       }
 
-      .domain-title {
-        position: absolute;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        padding: 1rem 0.5rem 0.7rem 0.5rem;
-        font-family: "Ubuntu", sans-serif;
-        font-size: 1.3rem;
-        font-weight: 700;
-        text-align: center;
-        letter-spacing: 0.5px;
-        /* color and background can be overridden inline for each card */
-        text-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
-        z-index: 2;
-        border-bottom-left-radius: 20px;
-        border-bottom-right-radius: 20px;
-        /* fallback background */
-        background: rgba(20, 11, 41, 0.5);
-        color: #fff;
-      }
-
       .domains-grid {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -174,12 +150,13 @@
 
       .domain-card {
         position: relative;
-        border-radius: 20px;
+        border-radius: 10px;
         overflow: hidden;
         box-shadow: 0 15px 35px rgba(20, 11, 41, 0.2);
         transition: transform 0.3s ease, box-shadow 0.3s ease;
         opacity: 0;
         transform: translateY(50px);
+        height: 220px;
       }
 
       .domain-card:hover {
@@ -189,29 +166,17 @@
 
       .domain-image {
         width: 100%;
-        height: 200px;
+        height: 220px;
         object-fit: cover;
         transition: transform 0.3s ease;
+        display: block;
+        /* vertical-align: bottom; */
       }
 
       .domain-card:hover .domain-image {
         transform: scale(1.1);
       }
 
-      .placeholder {
-        background: linear-gradient(145deg, #e6e6e6, #ffffff);
-        min-height: 200px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-      }
-
-      .placeholder-content {
-        width: 80%;
-        height: 60%;
-        background: linear-gradient(45deg, #f0f0f0, #d0d0d0);
-        border-radius: 10px;
-      }
       .app {
         position: relative;
         width: 100%;
@@ -355,7 +320,7 @@
       }
 
       .faq-container {
-        min-height: 200vh;
+        min-height: 180vh;
         background-color: #a594f9;
       }
 
@@ -667,11 +632,11 @@
         }
       }
       @media (min-width: 768px) and (max-width: 1199px) {
-    .faq-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 1.5rem;
-    }
-}
+        .faq-grid {
+          grid-template-columns: repeat(2, 1fr);
+          gap: 1.5rem;
+        }
+      }
       /* Responsive Design */
       @media (max-width: 1024px) {
         .app {
@@ -693,7 +658,7 @@
           width: 220px;
           height: 280px;
         }
-
+        
         .right-panel {
           margin-left: 0;
           width: 100%;
@@ -725,7 +690,7 @@
         }
 
         .main-title {
-          font-size: 2.5rem;
+          font-size: 4rem;
         }
 
         .section {
@@ -841,12 +806,12 @@
 
       @media (max-width: 480px) {
         .app-team-title {
-          font-size: 3rem;
+          font-size: 5rem;
         }
 
         .domains-title {
-          margin-top: 35px;
-          font-size: 2rem;
+          margin-top: 45px;
+          font-size: 4rem;
         }
 
         .device-mockup.phone {
@@ -880,13 +845,14 @@
         <div class="hero-content">
           <div class="hero-text">
             <h1 class="app-team-title">APP<br />TEAM</h1>
+            <br />
           </div>
           <div class="hero-devices">
             <div class="device-mockup phone">
-              <img src="/homepage/cat1.jpg" />
+              <img src="/homepage/image.webp" />
             </div>
             <div class="device-mockup tablet">
-              <img src="/homepage/apple.png" />
+              <img src="/homepage/image1.webp" />
             </div>
           </div>
         </div>
@@ -900,51 +866,46 @@
         <div class="domains-grid">
           <div class="domain-card" data-animate="fadeInUp">
             <img
-              src="https://images.pexels.com/photos/177598/pexels-photo-177598.jpeg?auto=compress&cs=tinysrgb&w=400"
+              src="/homepage/web.webp"
               alt="Web Development"
               class="domain-image"
             />
-            <div class="domain-title" style="color: #a594f9">
-              AI & Machine Learning
-            </div>
           </div>
           <div class="domain-card" data-animate="fadeInUp" data-delay="100">
             <img
-              src="https://images.pexels.com/photos/147413/twitter-facebook-together-exchange-of-information-147413.jpeg?auto=compress&cs=tinysrgb&w=400"
+              src="/homepage/app.webp"
               alt="Mobile App Development"
               class="domain-image"
             />
-            <div class="domain-title" style="color: #a594f9">
-              Web Development
-            </div>
           </div>
           <div class="domain-card" data-animate="fadeInUp" data-delay="200">
             <img
-              src="https://images.pexels.com/photos/8386440/pexels-photo-8386440.jpeg?auto=compress&cs=tinysrgb&w=400"
+              src="/homepage/ml.webp"
               alt="AI & Machine Learning"
               class="domain-image"
             />
-            <div class="domain-title" style="color: #a594f9">
-              App Development
-            </div>
           </div>
           <div class="domain-card" data-animate="fadeInUp" data-delay="300">
             <img
-              src="https://images.pexels.com/photos/5483077/pexels-photo-5483077.jpeg?auto=compress&cs=tinysrgb&w=400"
+              src="/homepage/bchain.webp"
               alt="Blockchain"
               class="domain-image"
             />
-            <div class="domain-title" style="color: #a594f9">
-              Internet of things
-            </div>
           </div>
           <div class="domain-card" data-animate="fadeInUp" data-delay="400">
             <img
-              src="https://images.pexels.com/photos/8728380/pexels-photo-8728380.jpeg?auto=compress&cs=tinysrgb&w=400"
+              src="/homepage/ar.webp"
               alt="VR/AR Development"
               class="domain-image"
             />
             <div class="domain-title" style="color: #a594f9">AR/VR</div>
+          </div>
+          <div class="domain-card" data-animate="fadeInUp" data-delay="400">
+            <img
+              src="/homepage/iot.webp"
+              alt="/ Development"
+              class="domain-image"
+            />
           </div>
         </div>
       </section>
@@ -1084,19 +1045,19 @@
                   </svg>
                 </div>
                 <div>
-                  <h3 class="card-question">How can I join the AP Team?</h3>
+                  <h3 class="card-question">How can I join the APP Team?</h3>
                 </div>
               </div>
 
               <div class="card-answer">
                 <div class="answer-content">
                   <p class="answer-text">
-                    You can join by filling out the recruitment form we share at the start of each semester. Follow our social media for updates!
+                    You can join by filling out the recruitment form we share at
+                    the start of each semester. Follow our social media for
+                    updates!
                   </p>
                 </div>
               </div>
-
-              
             </div>
           </div>
 
@@ -1126,12 +1087,11 @@
               <div class="card-answer">
                 <div class="answer-content">
                   <p class="answer-text">
-                    No! We welcome beginners. If you're eager to learn, we’ll help you grow with training and mentorship.
+                    No! We welcome beginners. If you're eager to learn, we'll
+                    help you grow with training and mentorship.
                   </p>
                 </div>
               </div>
-
-              
             </div>
           </div>
 
@@ -1150,19 +1110,21 @@
                   </svg>
                 </div>
                 <div>
-                  <h3 class="card-question">What kind of projects do you work on?</h3>
+                  <h3 class="card-question">
+                    What kind of projects do you work on?
+                  </h3>
                 </div>
               </div>
 
               <div class="card-answer">
                 <div class="answer-content">
                   <p class="answer-text">
-                   In the App Team, we develop apps for college fests like Nimbus and Hillfair, build websites, and organize the annual Hack on Hills hackathon.
+                    In the App Team, we develop apps for college fests like
+                    Nimbus and Hillfair, build websites, and organize the annual
+                    Hack on Hills hackathon.
                   </p>
                 </div>
               </div>
-
-              
             </div>
           </div>
 
@@ -1183,19 +1145,20 @@
                   </svg>
                 </div>
                 <div>
-                  <h3 class="card-question">Can first-year students join the team</h3>
+                  <h3 class="card-question">
+                    Can first-year students join the team
+                  </h3>
                 </div>
               </div>
 
               <div class="card-answer">
                 <div class="answer-content">
                   <p class="answer-text">
-                    Yes! First-year students are encouraged to join and explore different domains to find what interests them most.
+                    Yes! First-year students are encouraged to join and explore
+                    different domains to find what interests them most.
                   </p>
                 </div>
               </div>
-
-              
             </div>
           </div>
         </div>
