@@ -5,15 +5,9 @@ const { connectMongo } = require("./connection");
 const app = express();
 const path = require("path");
 
-const PORT = 8000 || process.env.PORT;
-
 const userRouter = require("./routes/user");
 const memberRouter = require("./routes/member");
 const announcementRouter = require("./routes/announcements");
-
-connectMongo(process.env.MONGO_URI)
-  .then(() => console.log("MongoDB connected"))
-  .catch((err) => console.log(`Mongo error: ${err}`));
 
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static("public"));
@@ -28,6 +22,17 @@ app.use("/announcements", announcementRouter);
 app.use((req, res, next) => {
   res.status(404).render("404");
 });
-app.listen(PORT, () =>
-  console.log(`Server started at port http://localhost:${PORT}`)
-);
+
+connectMongo(process.env.MONGO_URI)
+  .then(() => {
+    console.log("MongoDB connected");
+
+    const PORT = 8000 || process.env.PORT;
+    app.listen(PORT, () => {
+    console.log(`Server started at port http://localhost:${PORT}`)
+});
+})
+.catch((err) => {
+    console.log(`Mongo error: ${err}`)
+});
+
