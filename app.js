@@ -27,7 +27,7 @@ connectMongo(process.env.MONGO_URI)
   .then(() => {
     console.log("MongoDB connected");
 
-    const PORT = 8000 || process.env.PORT;
+    const PORT = process.env.PORT || 8000;
     app.listen(PORT, () => {
     console.log(`Server started at port http://localhost:${PORT}`)
 });
