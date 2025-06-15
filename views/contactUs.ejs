@@ -25,14 +25,13 @@
             background-color: #140b29;
             color: white;
             min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            display: block;
             padding: 20px;
             user-select: none;
         }
 
         .form-container {
+            margin: 0 auto;
             background-color: rgba(255, 255, 255, 0.1);
             padding: 40px;
             border-radius: 10px;
@@ -112,6 +111,102 @@
         .submit-btn:active {
             transform: translateY(1px);
         }
+         .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            clear: both;
+            width: 100%;
+        }
+
+        .page-title {
+            font-size: 2.5rem;
+            font-weight: 600;
+            margin-bottom: 40px;
+            margin-top: 40px;
+            text-align: center;
+            color: #ffffff;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .queries-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 24px;
+            max-width: 100%;
+        }
+
+        @media (min-width: 768px) {
+            .queries-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        .query-card {
+            background: linear-gradient(135deg, #1e1538 0%, #2a1f4a 100%);
+            border: 1px solid #3d2f5f;
+            border-radius: 12px;
+            padding: 24px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .query-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #8b5cf6, #a855f7, #c084fc);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .query-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 48px rgba(0, 0, 0, 0.4);
+            border-color: #8b5cf6;
+        }
+
+        .query-card:hover::before {
+            opacity: 1;
+        }
+
+        .card-header {
+            margin-bottom: 16px;
+        }
+
+        .card-name {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: #e0e7ff;
+            margin: 0;
+        }
+
+        .card-body {
+            line-height: 1.6;
+            color: #c1c9e8;
+            font-size: 0.95rem;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+        }
+
+        @media (max-width: 767px) {
+            .queries-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .page-title {
+                font-size: 2rem;
+                margin-bottom: 30px;
+            }
+            
+            body {
+                padding: 20px 15px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -140,6 +235,22 @@
             <button type="submit" class="submit-btn">Send Message</button>
         </form>
     </div>
-    
+    <div class="container">
+        <h1 class="page-title">Recent Queries</h1>
+        
+        <div class="queries-grid">
+            <% contacts.forEach(contact => { %>
+                <div class="query-card">
+                <div class="card-header">
+                    <h3 class="card-name"><%= contact.name %></h3>
+                </div>
+                <div class="card-body">
+                   <%= contact.query %>
+                </div>
+            </div>
+            <% }) %>
+        </div>
+    </div>
+    <%- include("./partials/footer") %>
 </body>
 </html>

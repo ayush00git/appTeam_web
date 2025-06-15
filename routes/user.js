@@ -25,14 +25,15 @@ router.post('/contactUs', async(req, res) => {
         email,
         query
     })
-    return res.render('contactUs', {
-        error: "Your query was sent, we'll respond to it as soon as poosible"
-    })
+    return res.redirect('/contactUs?success=1')
 })
 
-router.get('/contactUs', (req, res) => {
+router.get('/contactUs', async(req, res) => {
+    const contacts = await contact.find({})
+    const success = req.query.success
     return res.render("contactUs", {
-        error: null
+        error: success ? "Your query was sent, we'll respond to it as soon as possible" : null,
+        contacts
     })
 })
 
