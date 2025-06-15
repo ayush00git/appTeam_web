@@ -1,0 +1,17 @@
+# Node modules (big and generated automatically)
+node_modules/
+
+# Environment variables (contains secrets like DB password)
+.env
+
+# Logs
+logs
+*.log
+npm-debug.log*
+
+# OS-related
+.DS_Store
+
+# IDE/editor folders
+.vscode/
+.idea/
