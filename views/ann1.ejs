@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link
+      href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="shortcut icon" href="/favicon.png" type="image/x-icon">
+    <title>App Team</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #140b29;
+            color: #ffffff;
+            font-family: 'ubuntu', sans-serif;
+            padding: 40px 20px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .page-title {
+            font-size: 2.5rem;
+            font-weight: 600;
+            color: #ca82ff;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .make-announcement-btn {
+            background: linear-gradient(135deg, #8b5cf6, #a855f7);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 16px rgba(139, 92, 246, 0.3);
+        }
+
+        .make-announcement-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 24px rgba(139, 92, 246, 0.4);
+            background: linear-gradient(135deg, #7c3aed, #9333ea);
+        }
+
+        .make-announcement-btn:active {
+            transform: translateY(0);
+        }
+
+        .announcements-list {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .announcement-tile {
+            background: linear-gradient(135deg, #1e1538 0%, #2a1f4a 100%);
+            border: 1px solid #3d2f5f;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .announcement-tile::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #8b5cf6, #a855f7, #c084fc);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .announcement-tile:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 48px rgba(0, 0, 0, 0.4);
+            border-color: #8b5cf6;
+        }
+
+        .announcement-tile:hover::before {
+            opacity: 1;
+        }
+
+        .announcement-header {
+            padding: 24px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background-color 0.3s ease;
+        }
+
+        .announcement-header:hover {
+            background-color: rgba(139, 92, 246, 0.1);
+        }
+
+        .announcement-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #e0e7ff;
+            margin: 0;
+        }
+
+        .dropdown-arrow {
+            font-size: 1.2rem;
+            color: #8b5cf6;
+            transition: transform 0.3s ease;
+        }
+
+        .announcement-tile.active .dropdown-arrow {
+            transform: rotate(180deg);
+        }
+
+        .announcement-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            background-color: rgba(0, 0, 0, 0.2);
+        }
+
+        .announcement-tile.active .announcement-content {
+            max-height: 500px;
+        }
+
+        .announcement-body {
+            padding: 24px;
+            border-top: 1px solid #3d2f5f;
+            line-height: 1.6;
+            color: #c1c9e8;
+            font-size: 0.95rem;
+        }
+
+        .announcement-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+            font-size: 0.85rem;
+            color: #8b5cf6;
+        }
+
+        .announcement-date {
+            font-weight: 500;
+        }
+
+        .announcement-author {
+            font-style: italic;
+        }
+
+        @media (max-width: 767px) {
+            .page-title {
+                font-size: 2rem;
+            }
+            
+            .header {
+                flex-direction: column;
+                align-items: stretch;
+                text-align: center;
+            }
+            
+            .make-announcement-btn {
+                align-self: center;
+            }
+            
+            body {
+                padding: 20px 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <%- include('./partials/nav') %>
+    <div class="container">
+        <div class="header">
+            <h1 class="page-title">Announcements</h1>
+            <a href="/announcements/admin_only"><button class="make-announcement-btn">Make an Announcement</button></a>
+        </div>
+        
+        <div class="announcements-list">
+            <% announcements.forEach(ann => { %>
+             <div class="announcement-tile">
+                <div class="announcement-header" onclick="toggleAnnouncement(this)">
+                    <h3 class="announcement-title"><%= ann.title %></h3>
+                    <span class="dropdown-arrow">▼</span>
+                </div>
+                <div class="announcement-content">
+                    <div class="announcement-body">
+                        <div class="announcement-meta">
+                            <span class="announcement-date"><%= ann.date %></span>
+                            <span class="announcement-author">By: Admin Team</span>
+                        </div>
+                        <%= ann.content %>
+                    </div>
+                </div>
+            </div>
+            <% }) %>
+        </div>
+    </div>
+    <%- include('./partials/footer') %>
+
+
+    <script>
+        function toggleAnnouncement(header) {
+            const tile = header.parentElement;
+            const isActive = tile.classList.contains('active');
+            
+            // Close all other announcements
+            document.querySelectorAll('.announcement-tile.active').forEach(activeTile => {
+                if (activeTile !== tile) {
+                    activeTile.classList.remove('active');
+                }
+            });
+            
+            // Toggle current announcement
+            if (isActive) {
+                tile.classList.remove('active');
+            } else {
+                tile.classList.add('active');
+            }
+        }
+    </script>
+</body>
+</html>

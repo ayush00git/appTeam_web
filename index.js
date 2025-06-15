@@ -8,6 +8,7 @@ const PORT = 8000 || process.env.PORT
 
 const userRouter = require("./routes/user")
 const memberRouter = require("./routes/member")
+const announcementRouter = require("./routes/announcements")
 
 connectMongo('mongodb://127.0.0.1:27017/AppTeam')
 .then(() => console.log("MongoDB connected"))
@@ -22,6 +23,7 @@ app.set("views", path.resolve("./views"))
 
 app.use("/", userRouter)
 app.use("/member", memberRouter)
+app.use('/announcements', announcementRouter)
 
 app.use((req, res, next) => {
     res.status(404).render("404");

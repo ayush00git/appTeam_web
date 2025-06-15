@@ -29,12 +29,13 @@ router.post('/contactUs', async(req, res) => {
 })
 
 router.get('/contactUs', async(req, res) => {
-    const contacts = await contact.find({})
+    const contacts = await contact.find({}).sort({ createdAt: -1 })
     const success = req.query.success
     return res.render("contactUs", {
         error: success ? "Your query was sent, we'll respond to it as soon as possible" : null,
         contacts
     })
 })
+
 
 module.exports = router
