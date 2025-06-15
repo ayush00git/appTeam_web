@@ -17,6 +17,9 @@ const memberSchema = new Schema({
         type: String,
         required: true
     },
+    imageId: {
+        type: String
+    },
     linkedInURL: {
         type: String,
         required: true
