@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>App Team</title>
-    <link rel="shortcut icon" href="/favicon.png" type="image/x-icon">
+    <link rel="shortcut icon" href="/favicon.png" type="image/x-icon" />
     <link
       href="https://fonts.googleapis.com/css2?family=Gasoek+One&display=swap"
       rel="stylesheet"
@@ -52,14 +52,14 @@
       .hero-content {
         display: flex;
         align-items: center;
-        justify-content: space-between;
+        justify-content: center;
         width: 100%;
         max-width: 1200px;
-        gap: 4rem;
       }
 
       .hero-text {
-        flex: 1;
+        flex: 1; 
+        text-align: center;
         animation: slideInLeft 1s ease-out;
       }
 
@@ -70,54 +70,6 @@
         color: #a594f9;
         line-height: 0.9;
         letter-spacing: -0.02em;
-      }
-
-      .hero-devices {
-        flex: 1;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        position: relative;
-        animation: slideInRight 1s ease-out;
-      }
-
-      .device-mockup {
-        border-radius: 20px;
-        position: relative;
-        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-      }
-
-      .device-mockup.phone {
-        width: 200px;
-        height: 360px;
-        background: #140b29;
-        z-index: 2;
-        transform: rotate(-5deg);
-        overflow: hidden;
-      }
-      .device-mockup.phone img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover; /* Add this */
-        display: block;
-      }
-
-      .device-mockup.tablet {
-        width: 280px;
-        height: 400px;
-        background: #140b29;
-        position: absolute;
-        right: -40px;
-        top: -20px;
-        z-index: 1;
-        transform: rotate(10deg);
-        overflow: hidden;
-      }
-      .device-mockup.tablet img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover; /* Add this */
-        display: block;
       }
 
       /* Domains Section */
@@ -659,7 +611,7 @@
           width: 220px;
           height: 280px;
         }
-        
+
         .right-panel {
           margin-left: 0;
           width: 100%;
@@ -791,10 +743,6 @@
           gap: 2rem;
         }
 
-        .hero-devices {
-          transform: scale(0.8);
-        }
-
         .domains-grid {
           grid-template-columns: 1fr;
           gap: 1.5rem;
@@ -813,16 +761,6 @@
         .domains-title {
           margin-top: 45px;
           font-size: 4rem;
-        }
-
-        .device-mockup.phone {
-          width: 150px;
-          height: 270px;
-        }
-
-        .device-mockup.tablet {
-          width: 210px;
-          height: 300px;
         }
       }
 
@@ -845,16 +783,8 @@
       <section class="hero-section">
         <div class="hero-content">
           <div class="hero-text">
-            <h1 class="app-team-title">APP<br />TEAM</h1>
+            <h1 class="app-team-title">APP TEAM</h1>
             <br />
-          </div>
-          <div class="hero-devices">
-            <div class="device-mockup phone">
-              <img src="/homepage/image.webp" />
-            </div>
-            <div class="device-mockup tablet">
-              <img src="/homepage/image1.webp" />
-            </div>
           </div>
         </div>
       </section>
@@ -935,14 +865,20 @@
 
           <!-- Sections -->
           <div class="section active" id="hack-on-hills">
-            <h2 class="section-title">Conduct Hack on Hills </h2>
+            <h2 class="section-title">Conduct Hack on Hills</h2>
             <p class="section-description">
               North India's biggest student-run hackathon, powered by our robust
               event management and judging platform with real-time updates and
               seamless participant experience.
-              <br>
+              <br />
               For more info about the upcoming hack-on-hills 7.0 visit the
-              official website - <a href="https://www.hackonhills.com/" target="_blank" style="color: #a594f9">HACKONHILLS-7.0</a>
+              official website -
+              <a
+                href="https://www.hackonhills.com/"
+                target="_blank"
+                style="color: #a594f9"
+                >HACKONHILLS-7.0</a
+              >
             </p>
             <div class="section-divider"></div>
           </div>
@@ -953,8 +889,14 @@
               A comprehensive platform for NIT Hamirpur's annual tech fest,
               offering schedules, live updates, interactive maps, and
               streamlined event registration features.
-              <br>
-              Check out the official app of Nimbus 2k25 - <a href="https://play.google.com/store/apps/details?id=com.appteam.nimbus2k25&pcampaignid=web_share" target="_blank" style="color:#a594f9">Nimbus-2k25</a>
+              <br />
+              Check out the official app of Nimbus 2k25 -
+              <a
+                href="https://play.google.com/store/apps/details?id=com.appteam.nimbus2k25&pcampaignid=web_share"
+                target="_blank"
+                style="color: #a594f9"
+                >Nimbus-2k25</a
+              >
             </p>
             <div class="section-divider"></div>
           </div>
@@ -965,8 +907,14 @@
               The official app for NIT Hamirpur's cultural fest, blending
               vibrant UI with seamless user experience to celebrate student
               creativity and cultural diversity through innovative features.
-              <br>
-              Check out the official app of Hillfair 2k24 - <a href="https://play.google.com/store/apps/details?id=com.appteam.hillfair2k24&pcampaignid=web_share" target="_blank" style="color:#a594f9">Hillfair-2k24</a>
+              <br />
+              Check out the official app of Hillfair 2k24 -
+              <a
+                href="https://play.google.com/store/apps/details?id=com.appteam.hillfair2k24&pcampaignid=web_share"
+                target="_blank"
+                style="color: #a594f9"
+                >Hillfair-2k24</a
+              >
             </p>
             <div class="section-divider"></div>
           </div>
