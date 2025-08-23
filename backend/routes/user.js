@@ -19,22 +19,29 @@ router.get('/events', (req, res) => {
 })
 
 router.post('/contactUs', async(req, res) => {
-    const { name, email, query } = req.body
-    await contact.create({
-        name,
-        email,
-        query
-    })
-    return res.redirect('/contactUs?success=1')
+    try {
+        const { name, email, query } = req.body;
+        if (!name || !email || !query) {
+            return res.status(400).json({ success: false, message: 'All fields are required.' });
+        }
+        await contact.create({
+            name,
+            email,
+            query
+        });
+        return res.status(201).json({ success: true, message: "Your query was sent, we'll respond to it as soon as possible" });
+    } catch (err) {
+        return res.status(500).json({ success: false, message: 'Failed to submit query.' });
+    }
 })
 
 router.get('/contactUs', async(req, res) => {
-    const contacts = await contact.find({}).sort({ createdAt: -1 })
-    const success = req.query.success
-    return res.render("contactUs", {
-        error: success ? "Your query was sent, we'll respond to it as soon as possible" : null,
-        contacts
-    })
+    try {
+        const contacts = await contact.find({}).sort({ createdAt: -1 });
+        return res.status(200).json({ success: true, contacts });
+    } catch (err) {
+        return res.status(500).json({ success: false, message: 'Failed to fetch contacts.' });
+    }
 })
 
 

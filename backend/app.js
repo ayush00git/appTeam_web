@@ -17,9 +17,7 @@ app.use(cors({
 
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static("public"));
-
-app.set("view engine", "ejs");
-app.set("views", path.resolve("./views"));
+app.use(express.json());
 
 app.use("/", userRouter);
 app.use("/member", memberRouter);
