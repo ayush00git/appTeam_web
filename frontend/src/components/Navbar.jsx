@@ -103,7 +103,7 @@ const Navbar = () => {
       `}</style>
 
       <nav className="fixed top-5 left-1/2 transform -translate-x-1/2 w-[90%] max-w-6xl z-50 md:top-7">
-        <div className="bg-purple-950/95 navbar-blur border border-indigo-500/30 rounded-2xl px-6 py-4 shadow-lg shadow-indigo-500/20 transition-all duration-300 ease-in-out md:px-8">
+        <div className="bg-[#140b29] navbar-blur border border-indigo-500/30 rounded-2xl px-6 py-4 shadow-lg shadow-indigo-500/20 transition-all duration-300 ease-in-out md:px-8">
           <div className="flex justify-between items-center">
             {/* Logo */}
             <a 
