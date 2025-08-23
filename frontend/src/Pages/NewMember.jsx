@@ -141,15 +141,8 @@ const NewMemberForm = () => {
 
   return (
     <div className="font-sans min-h-screen flex items-center justify-center p-5 select-none" style={{ backgroundColor: '#140b29' }}>
-      <div className="form-card bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-2xl rounded-3xl p-10 w-full max-w-md border border-white/15 shadow-2xl relative">
-        {/* Decorative element */}
-        <div className="absolute w-20 h-20 border-2 border-white/10 rounded-full -top-10 -right-10">
-          <div className="absolute w-10 h-10 bg-gradient-to-r from-blue-400 to-purple-600 rounded-full top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 opacity-30"></div>
-        </div>
-
-        {/* Gradient border top */}
-        <div className="absolute top-0 left-0 right-0 h-0.5 bg-gradient-to-r from-blue-400 via-purple-600 to-blue-400 rounded-t-3xl"></div>
-
+      <div className="form-card rounded-3xl p-10 w-full max-w-md border-2 border-white/15 shadow-2xl relative">
+      
         <h1 className="text-center text-white text-2xl font-semibold mb-8 text-shadow">
           Team Member's Details
         </h1>

@@ -6,6 +6,7 @@ import AboutUs from "./Pages/AboutUs";
 import Events from "./Pages/Events";
 import OurTeam from "./Pages/OurTeam";
 import NewMemberForm from "./Pages/NewMember";
+import ContactForm from "./Pages/ContactUs";
 
 function App() {
   return (
@@ -18,6 +19,8 @@ function App() {
           <Route path="/events" element={<Events />} />
           <Route path="/member" element={<OurTeam />} />
           <Route path="/member/newMember" element={<NewMemberForm />} />
+          <Route path="/contactUs" element={<ContactForm />} />
+          
           {/* <Route path="/about" element={<About />} /> */}
           {/* Add more routes as needed */}
         </Routes>
