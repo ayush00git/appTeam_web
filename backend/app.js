@@ -1,6 +1,7 @@
 require("dotenv").config();
 
 const express = require("express");
+const cors = require("cors");
 const { connectMongo } = require("./connection");
 const app = express();
 const path = require("path");
@@ -8,6 +9,11 @@ const path = require("path");
 const userRouter = require("./routes/user");
 const memberRouter = require("./routes/member");
 const announcementRouter = require("./routes/announcements");
+
+app.use(cors({
+  origin: "http://localhost:5173",
+  credentials: true
+}));
 
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static("public"));

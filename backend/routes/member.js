@@ -14,12 +14,20 @@ cloudinary.config({
   api_secret: process.env.API_SECRET,
 });
 
-router.get('/', async(req, res) => {
-    const newMembs = await member.find({})
-    return res.render("member", {
-        newMembs
-    })
-})
+// GET /member - return all members as JSON
+router.get('/', async (req, res) => {
+  try {
+    const newMembs = await member.find({});
+    return res.json(newMembs);
+  } catch (err) {
+    return res.status(500).json({ error: 'Failed to fetch members' });
+  }
+});
+
+// GET /member/newMember - not needed for API, return 404
+router.get("/newMember", (req, res) => {
+  return res.status(404).json({ error: "Not found" });
+});
 
 const fileFilter = function (req, file, cb) {
   const allowedTypes = [".png", ".jpg", ".jpeg", ".webp", ".heic"];
@@ -35,16 +43,11 @@ const upload = multer({
   fileFilter,
 }); 
 
-router.get("/newMember", (req, res) => {
-  return res.render("newMember", { error: null });
-});
-
+// POST /member/newMember - handle form, return JSON
 router.post("/newMember", async (req, res) => {
   upload.single("profileImageURL")(req, res, async function (err) {
     if (err) {
-      return res.render("newMember", {
-        error: err.message,
-      });
+      return res.status(400).json({ error: err.message });
     }
     const { name, bio, role, githubURL, linkedInURL } = req.body;
 
@@ -71,7 +74,7 @@ router.post("/newMember", async (req, res) => {
         );
         profileImageURL = result.secure_url;
       }
-      await member.create({
+      const created = await member.create({
         name,
         bio,
         role,
@@ -79,12 +82,10 @@ router.post("/newMember", async (req, res) => {
         githubURL,
         linkedInURL,
       });
-      return res.redirect('/member')
+      return res.status(201).json({ success: true, member: created });
     } catch (error) {
       console.error(`Upload error: ${error}`);
-      return res.render("newMember", {
-        error: `Failed to upload image, please try again`,
-      });
+      return res.status(500).json({ error: `Failed to upload image, please try again` });
     }
   });
 });
