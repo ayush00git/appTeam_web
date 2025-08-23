@@ -73,18 +73,12 @@ export default function ContactForm() {
   }, []);
 
   return (
-    <div className="min-h-screen font-sans text-white p-5 select-none" style={{backgroundColor: '#140b29'}}>
+    <div className="min-h-screen bg-[#14b29] font-sans text-white p-5 select-none">
       {/* Contact Form Section */}
-      <div className="max-w-lg mx-auto p-10 rounded-lg shadow-2xl backdrop-blur-sm border" 
-           style={{
-             backgroundColor: 'rgba(255, 255, 255, 0.1)', 
-             borderColor: 'rgba(255, 255, 255, 0.1)',
-             boxShadow: '0 8px 32px rgba(0, 0, 0, 0.3)'
-           }}>
-        <h1 className="text-3xl text-center mb-8 font-normal" style={{color: '#c87fff'}}>
+      <div className="max-w-lg mx-auto p-10 rounded-3xl shadow-2xl border-2 backdrop-blur-2xl border-white/15">
+        <h1 className="text-3xl text-center mb-8 font-normal text-white">
           Contact Us
         </h1>
-        
         {message && (
           <div className={`mb-6 p-3 rounded text-center ${
             message.includes('success') 
@@ -94,10 +88,10 @@ export default function ContactForm() {
             {message}
           </div>
         )}
-
         <div className="space-y-5">
-          <div className="mb-5">
-            <label htmlFor="name" className="block mb-2 font-bold" style={{color: '#c87fff'}}>
+          {/* Name */}
+          <div className="mb-6">
+            <label htmlFor="name" className="block text-gray-200 text-sm font-medium mb-2 uppercase tracking-wide">
               Name
             </label>
             <input
@@ -108,25 +102,12 @@ export default function ContactForm() {
               onChange={handleChange}
               placeholder="Enter your full name"
               required
-              className="w-full p-3 border rounded text-white text-base transition-colors duration-300 focus:outline-none focus:shadow-lg"
-              style={{
-                borderColor: 'rgba(255, 255, 255, 0.3)',
-                backgroundColor: 'rgba(255, 255, 255, 0.1)',
-                boxShadow: 'none'
-              }}
-              onFocus={(e) => {
-                e.target.style.borderColor = '#8b5cf6';
-                e.target.style.boxShadow = '0 0 10px rgba(139, 92, 246, 0.3)';
-              }}
-              onBlur={(e) => {
-                e.target.style.borderColor = 'rgba(255, 255, 255, 0.3)';
-                e.target.style.boxShadow = 'none';
-              }}
+              className="w-full py-4 px-5 bg-white/8 border-2 border-white/20 rounded-xl text-white text-base outline-none focus:border-blue-400 focus:bg-white/12 placeholder:text-white/50"
             />
           </div>
-
-          <div className="mb-5">
-            <label htmlFor="email" className="block mb-2 font-bold" style={{color: '#c87fff'}}>
+          {/* Email */}
+          <div className="mb-6">
+            <label htmlFor="email" className="block text-gray-200 text-sm font-medium mb-2 uppercase tracking-wide">
               Email Address
             </label>
             <input
@@ -137,25 +118,12 @@ export default function ContactForm() {
               onChange={handleChange}
               placeholder="Enter your email address"
               required
-              className="w-full p-3 border rounded text-white text-base transition-colors duration-300 focus:outline-none focus:shadow-lg"
-              style={{
-                borderColor: 'rgba(255, 255, 255, 0.3)',
-                backgroundColor: 'rgba(255, 255, 255, 0.1)',
-                boxShadow: 'none'
-              }}
-              onFocus={(e) => {
-                e.target.style.borderColor = '#8b5cf6';
-                e.target.style.boxShadow = '0 0 10px rgba(139, 92, 246, 0.3)';
-              }}
-              onBlur={(e) => {
-                e.target.style.borderColor = 'rgba(255, 255, 255, 0.3)';
-                e.target.style.boxShadow = 'none';
-              }}
+              className="w-full py-4 px-5 bg-white/8 border-2 border-white/20 rounded-xl text-white text-base outline-none focus:border-blue-400 focus:bg-white/12 placeholder:text-white/50"
             />
           </div>
-
-          <div className="mb-5">
-            <label htmlFor="query" className="block mb-2 font-bold" style={{color: '#c87fff'}}>
+          {/* Query */}
+          <div className="mb-6">
+            <label htmlFor="query" className="block text-gray-200 text-sm font-medium mb-2 uppercase tracking-wide">
               Query
             </label>
             <textarea
@@ -166,42 +134,16 @@ export default function ContactForm() {
               placeholder="Please describe your query or message..."
               required
               rows="5"
-              className="w-full p-3 border rounded text-white text-base transition-colors duration-300 focus:outline-none focus:shadow-lg resize-y"
-              style={{
-                borderColor: 'rgba(255, 255, 255, 0.3)',
-                backgroundColor: 'rgba(255, 255, 255, 0.1)',
-                height: '120px',
-                boxShadow: 'none'
-              }}
-              onFocus={(e) => {
-                e.target.style.borderColor = '#8b5cf6';
-                e.target.style.boxShadow = '0 0 10px rgba(139, 92, 246, 0.3)';
-              }}
-              onBlur={(e) => {
-                e.target.style.borderColor = 'rgba(255, 255, 255, 0.3)';
-                e.target.style.boxShadow = 'none';
-              }}
+              className="w-full py-4 px-5 bg-white/8 border-2 border-white/20 rounded-xl text-white text-base outline-none focus:border-blue-400 focus:bg-white/12 placeholder:text-white/50 resize-y"
+              style={{ minHeight: '120px' }}
             />
           </div>
-
+          {/* Submit Button */}
           <button
             type="button"
             onClick={handleSubmit}
             disabled={isSubmitting}
-            className="w-full p-3 text-white border-0 rounded text-base font-bold cursor-pointer transition-all duration-300 active:translate-y-px disabled:cursor-not-allowed"
-            style={{
-              backgroundColor: isSubmitting ? 'rgba(139, 92, 246, 0.5)' : '#8b5cf6'
-            }}
-            onMouseEnter={(e) => {
-              if (!isSubmitting) {
-                e.target.style.backgroundColor = '#7c3aed';
-              }
-            }}
-            onMouseLeave={(e) => {
-              if (!isSubmitting) {
-                e.target.style.backgroundColor = '#8b5cf6';
-              }
-            }}
+            className="w-full py-4 bg-gradient-to-r from-blue-400 to-purple-600 border-none rounded-xl text-white text-base font-semibold uppercase tracking-wide mt-3 cursor-pointer transition-all duration-300 hover:from-blue-500 hover:to-purple-700 hover:shadow-lg disabled:opacity-60 disabled:cursor-not-allowed"
           >
             {isSubmitting ? 'Sending...' : 'Send Message'}
           </button>
@@ -269,9 +211,28 @@ export default function ContactForm() {
       </div>
 
       <style jsx>{`
-        input::placeholder,
+        .text-shadow {
+          text-shadow: 0 2px 10px rgba(255, 255, 255, 0.1);
+        }
+        input[type="text"],
+        input[type="email"],
+        textarea {
+          background: #20194a !important;
+          border-color: #3a2e6e !important;
+          color: #b3a7e6 !important;
+        }
+        input[type="text"]::placeholder,
+        input[type="email"]::placeholder,
         textarea::placeholder {
-          color: rgba(255, 255, 255, 0.6);
+          color: #7c6bb3 !important;
+          opacity: 1;
+        }
+        input[type="text"]:focus,
+        input[type="email"]:focus,
+        textarea:focus {
+          border-color: #7c6bb3 !important;
+          background: #251e5a !important;
+          color: #e0d6ff !important;
         }
       `}</style>
     </div>
