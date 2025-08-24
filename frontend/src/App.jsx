@@ -7,6 +7,8 @@ import Events from "./Pages/Events";
 import OurTeam from "./Pages/OurTeam";
 import NewMemberForm from "./Pages/NewMember";
 import ContactForm from "./Pages/ContactUs";
+import AnnouncementsPage from "./Pages/Announcements";
+import AnnouncementForm from "./Pages/Announcement_Form";
 
 function App() {
   return (
@@ -20,6 +22,8 @@ function App() {
           <Route path="/member" element={<OurTeam />} />
           <Route path="/member/newMember" element={<NewMemberForm />} />
           <Route path="/contactUs" element={<ContactForm />} />
+          <Route path="/announcements" element={<AnnouncementsPage />} />
+          <Route path="/announcements/admin_only/onlyteams" element={<AnnouncementForm />} />
           
           {/* <Route path="/about" element={<About />} /> */}
           {/* Add more routes as needed */}

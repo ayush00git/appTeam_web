@@ -151,7 +151,7 @@ export default function ContactForm() {
       </div>
 
       {/* Recent Queries Section */}
-      <div className="max-w-6xl mx-auto mt-10">
+      {/* <div className="max-w-6xl mx-auto mt-10">
         <h1 className="text-4xl font-semibold text-center mb-10 text-white" 
             style={{textShadow: '0 2px 4px rgba(0, 0, 0, 0.3)'}}>
           Recent Queries
@@ -167,28 +167,7 @@ export default function ContactForm() {
                 borderColor: '#3d2f5f',
                 boxShadow: '0 8px 32px rgba(0, 0, 0, 0.3)'
               }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.borderColor = '#8b5cf6';
-                e.currentTarget.style.boxShadow = '0 12px 48px rgba(0, 0, 0, 0.4)';
-                const before = e.currentTarget.querySelector('.gradient-border');
-                if (before) before.style.opacity = '1';
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.borderColor = '#3d2f5f';
-                e.currentTarget.style.boxShadow = '0 8px 32px rgba(0, 0, 0, 0.3)';
-                const before = e.currentTarget.querySelector('.gradient-border');
-                if (before) before.style.opacity = '0';
-              }}
-            >
-              {/* Gradient top border */}
-              <div 
-                className="gradient-border absolute top-0 left-0 right-0 h-0.5 transition-opacity duration-300"
-                style={{
-                  background: 'linear-gradient(90deg, #8b5cf6, #a855f7, #c084fc)',
-                  opacity: 0
-                }}
-              ></div>
-              
+            >              
               <div className="mb-4">
                 <h3 className="text-xl font-semibold mb-0" style={{color: '#e0e7ff'}}>
                   {contact.name}
@@ -208,7 +187,7 @@ export default function ContactForm() {
             <p className="text-lg">No recent queries to display</p>
           </div>
         )}
-      </div>
+      </div> */}
 
       <style jsx>{`
         .text-shadow {
