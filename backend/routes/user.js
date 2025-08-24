@@ -29,7 +29,7 @@ router.post('/contactUs', async(req, res) => {
             email,
             query
         });
-        return res.status(201).json({ success: true, message: "Your query was sent, we'll respond to it as soon as possible" });
+        return res.status(201).json({ success: true, message: "Your query was sent, we'll respond to it as soon as possible on your mentioned email" });
     } catch (err) {
         return res.status(500).json({ success: false, message: 'Failed to submit query.' });
     }

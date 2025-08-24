@@ -5,9 +5,7 @@ const announcement = require("../models/announcement")
 
 router.get('/', async(req, res) => {
     const announcements = await announcement.find({}).sort({createdAt : -1})
-    return res.render('ann1', {
-        announcements
-    })
+    return res.json({ announcements });
 })
 
 router.get('/admin_only', (req, res) => {
@@ -19,12 +17,19 @@ router.get('/admin_only/onlyteams', (req, res) => {
 })
 
 router.post('/admin_only/onlyteams', async(req, res) => {
-    const { title, date, content } = req.body
-    await announcement.create({
-        title,
-        date,
-        content
-    })
-    return res.redirect('/announcements')
-})
+    try {
+        const { title, date, content } = req.body;
+        if (!title || !date || !content) {
+            return res.status(400).json({ success: false, message: 'All fields are required.' });
+        }
+        await announcement.create({
+            title,
+            date,
+            content
+        });
+        return res.status(201).json({ success: true, message: 'Announcement posted successfully!' });
+    } catch (err) {
+        return res.status(500).json({ success: false, message: 'Failed to post announcement.' });
+    }
+});
 module.exports = router
