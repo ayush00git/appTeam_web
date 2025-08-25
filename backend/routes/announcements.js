@@ -8,15 +8,7 @@ router.get('/', async(req, res) => {
     return res.json({ announcements });
 })
 
-router.get('/admin_only', (req, res) => {
-    return res.render('admin_pass')
-})
-
-router.get('/admin_only/onlyteams', (req, res) => {
-    return res.render('writeann')
-})
-
-router.post('/admin_only/onlyteams', async(req, res) => {
+router.post(`/admin_only/${process.env.ROUTE_SECRET}`, async(req, res) => {
     try {
         const { title, date, content } = req.body;
         if (!title || !date || !content) {

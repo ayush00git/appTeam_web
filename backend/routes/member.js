@@ -24,11 +24,6 @@ router.get('/', async (req, res) => {
   }
 });
 
-// GET /member/newMember - not needed for API, return 404
-router.get("/newMember", (req, res) => {
-  return res.status(404).json({ error: "Not found" });
-});
-
 const fileFilter = function (req, file, cb) {
   const allowedTypes = [".png", ".jpg", ".jpeg", ".webp", ".heic"];
   const ext = path.extname(file.originalname).toLowerCase();
@@ -44,7 +39,7 @@ const upload = multer({
 }); 
 
 // POST /member/newMember - handle form, return JSON
-router.post("/newMember", async (req, res) => {
+router.post(`/admin_only/newMember/${process.env.VITE_ROUTE_SECRET}`, async (req, res) => {
   upload.single("profileImageURL")(req, res, async function (err) {
     if (err) {
       return res.status(400).json({ error: err.message });
