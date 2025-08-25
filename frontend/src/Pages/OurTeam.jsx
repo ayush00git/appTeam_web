@@ -106,7 +106,7 @@ const OurTeam = () => {
         </section>
 
         {/* Members Click Here Button */}
-        <a href="/member/newMember" className="block mb-10">
+        <a href="/member/admin_only/newMember" className="block mb-10">
           <button className="submit-btn w-full py-4 px-6 bg-gradient-to-r from-purple-500 to-purple-700 border-none rounded-xl text-white text-lg font-semibold cursor-pointer transition-all duration-300 mt-5 hover:from-purple-700 hover:to-purple-900 hover:-translate-y-1 hover:shadow-2xl active:translate-y-0">
             Members Click Here
           </button>

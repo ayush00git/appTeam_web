@@ -23,7 +23,7 @@ export default function AnnouncementForm() {
     if (messageTimeoutRef.current) clearTimeout(messageTimeoutRef.current);
 
     try {
-      const response = await fetch('http://localhost:8000/announcements/admin_only/onlyteams', {
+      const response = await fetch(`http://localhost:8000/announcements/admin_only/${import.meta.env.VITE_ROUTE_SECRET}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
