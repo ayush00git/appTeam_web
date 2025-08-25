@@ -7,7 +7,6 @@ const memberSchema = new Schema({
     },
     bio: {
         type: String,
-        required: true
     },
     profileImageURL: {
         type: String,
