@@ -189,6 +189,7 @@ const NewMemberForm = () => {
               required
             >
               <option value="" disabled>What's your position</option>
+              <option value="Alumni">Alumni</option>
               <option value="Club Secretary">Club Secretary</option>
               <option value="Convener">Convener</option>
               <option value="Club Coordinator">Club Coordinator</option>

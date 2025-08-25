@@ -1,7 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Footer from "./components/Footer";
 import Navbar from "./components/Navbar";
-import Homepage from "./Pages/Home";
 import AboutUs from "./Pages/AboutUs";
 import Events from "./Pages/Events";
 import OurTeam from "./Pages/OurTeam";
@@ -10,6 +9,7 @@ import ContactForm from "./Pages/ContactUs";
 import AnnouncementsPage from "./Pages/Announcements";
 import AnnouncementForm from "./Pages/Announcement_Form";
 import NotFound from "./Pages/NotFound";
+import HomePage from "./Pages/HomePage";
 
 function App() {
   return (
@@ -17,7 +17,7 @@ function App() {
       <div className="bg-[#140b29]">
         <Navbar />
         <Routes>
-          <Route path="/" element={<Homepage />} />
+          <Route path="/" element={<HomePage />} />
           <Route path="/aboutUs" element={<AboutUs />} />
           <Route path="/events" element={<Events />} />
           <Route path="/member" element={<OurTeam />} />
