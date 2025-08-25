@@ -26,8 +26,6 @@ function App() {
           <Route path="/announcements" element={<AnnouncementsPage />} />
           <Route path={`/announcements/admin_only/${import.meta.env.VITE_ROUTE_SECRET}`} element={<AnnouncementForm />} />
           <Route path="*" element={<NotFound />} />
-          {/* <Route path="/about" element={<About />} /> */}
-          {/* Add more routes as needed */}
         </Routes>
         <Footer />
       </div>

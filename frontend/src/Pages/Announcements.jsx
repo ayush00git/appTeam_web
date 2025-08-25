@@ -1,9 +1,11 @@
 import { useState, useEffect } from 'react';
+import {useNavigate} from 'react-router-dom';
 
 export default function AnnouncementsPage() {
   const [announcements, setAnnouncements] = useState([]);
   const [activeAnnouncement, setActiveAnnouncement] = useState(null);
   const [loading, setLoading] = useState(true);
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetchAnnouncements();
@@ -27,11 +29,6 @@ export default function AnnouncementsPage() {
     setActiveAnnouncement(activeAnnouncement === index ? null : index);
   };
 
-  const handleMakeAnnouncement = () => {
-    // You can implement navigation logic here
-    window.open('/announcements/admin_only', '_blank');
-  };
-
   return (
     <div className="min-h-screen font-sans text-white py-10 px-5" style={{backgroundColor: '#140b29'}}>
       <div className="max-w-4xl mx-auto">
@@ -45,7 +42,7 @@ export default function AnnouncementsPage() {
           </h1>
           
           <button 
-            onClick={handleMakeAnnouncement}
+            onClick={() => navigate('/announcements/admin_only')}
             className="px-6 py-3 text-white border-2 rounded-lg text-base font-semibold cursor-pointer transition-all duration-300 transform"
             
           >

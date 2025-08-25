@@ -1,8 +1,11 @@
 "use client";
 import { motion } from "framer-motion";
+import { useNavigate } from 'react-router-dom';
 
 function HeroSection() {
+  const navigate = useNavigate();
   return (
+    
     <>
       {/* Hero Section */}
       <section className="h-[80vh] flex items-center justify-center relative px-8 overflow-hidden">
@@ -45,10 +48,12 @@ function HeroSection() {
             transition={{ duration: 0.8, delay: 0.9 }}
             className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-16"
           >
-            <button className="bg-[#a594f9] border-2 border-[#140b29] text-[#140b29] px-8 py-4 rounded-full font-semibold text-lg hover:bg-[#140b29] hover:text-[#a594f9] hover:border-[#a594f9] transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl">
+            <button className="bg-[#a594f9] border-2 border-[#140b29] text-[#140b29] px-8 py-4 rounded-full font-semibold text-lg hover:bg-[#140b29] hover:text-[#a594f9] hover:border-[#a594f9] transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl"
+            onClick={() => navigate('/projects')}>
               Explore Our Work
             </button>
-            <button className="border-2 border-[#a594f9] text-[#a594f9] px-8 py-4 rounded-full font-semibold text-lg hover:bg-[#a594f9] hover:text-[#140b29] transform hover:scale-105 transition-all duration-300">
+            <button className="border-2 border-[#a594f9] text-[#a594f9] px-8 py-4 rounded-full font-semibold text-lg hover:bg-[#a594f9] hover:text-[#140b29] transform hover:scale-105 transition-all duration-300"
+            onClick={() => navigate('/member')}>
               Join Our Team
             </button>
           </motion.div>

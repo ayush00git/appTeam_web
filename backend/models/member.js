@@ -1,38 +1,49 @@
-const { Schema, model } = require("mongoose")
+const { Schema, model } = require("mongoose");
 
-const memberSchema = new Schema({
+const memberSchema = new Schema(
+  {
     name: {
-        type: String,
-        required: true
+      type: String,
+      required: true,
     },
     bio: {
-        type: String,
+      type: String,
     },
     profileImageURL: {
-        type: String,
-        default: "./uploads/default.png" ,
+      type: String,
+      default: "./uploads/default.png",
     },
     role: {
-        type: String,
-        required: true
+      type: String,
+      required: true,
+      enum: [
+        "Alumni",
+        "Club coordinator",
+        "Convener",
+        "Club Secretary",
+        "Executive",
+        "Volunteer",
+      ],
     },
     imageId: {
-        type: String
+      type: String,
     },
     linkedInURL: {
-        type: String,
-        required: true
+      type: String,
+      required: true,
     },
     githubURL: {
-        type: String,
-        required: true
+      type: String,
+      required: true,
     },
     createdBy: {
-        type: Schema.Types.ObjectId,
-        ref: "users"
-    }
-}, {timestamps: true})
+      type: Schema.Types.ObjectId,
+      ref: "users",
+    },
+  },
+  { timestamps: true }
+);
 
-const member = model("members", memberSchema)
+const member = model("members", memberSchema);
 
-module.exports = member
+module.exports = member;
