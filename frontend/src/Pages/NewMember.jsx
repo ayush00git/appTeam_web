@@ -22,6 +22,19 @@ const NewMemberForm = () => {
       ...prev,
       [name]: value
     }));
+    // Clear error when user starts typing
+    if (error) setError('');
+  };
+
+  const validateRequiredFields = () => {
+    const requiredFields = [];
+    
+    if (!formData.name.trim()) requiredFields.push('Full Name');
+    if (!formData.role) requiredFields.push('Position');
+    if (!formData.githubURL.trim()) requiredFields.push('GitHub Link');
+    if (!formData.linkedInURL.trim()) requiredFields.push('LinkedIn Link');
+    
+    return requiredFields;
   };
 
   const handleFileChange = (e) => {
@@ -75,9 +88,17 @@ const NewMemberForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setIsSubmitting(true);
     setError('');
     setSuccess('');
+
+    // Validate required fields
+    const missingFields = validateRequiredFields();
+    if (missingFields.length > 0) {
+      setError(`Required fields: ${missingFields.join(', ')}`);
+      return;
+    }
+
+    setIsSubmitting(true);
 
     try {
       const formDataToSend = new FormData();
@@ -139,6 +160,11 @@ const NewMemberForm = () => {
     }
   };
 
+  const isFieldMissing = (fieldName) => {
+    const missingFields = validateRequiredFields();
+    return missingFields.includes(fieldName);
+  };
+
   return (
     <div className="font-sans min-h-screen flex items-center justify-center p-5 select-none" style={{ backgroundColor: '#140b29' }}>
       <div className="form-card rounded-3xl p-10 w-full max-w-md border-2 border-white/15 shadow-2xl relative">
@@ -163,7 +189,7 @@ const NewMemberForm = () => {
           {/* Name */}
           <div className="mb-6">
             <label className="block text-gray-200 text-sm font-medium mb-2 uppercase tracking-wide">
-              Full Name
+              Full Name <span className="text-red-400">*</span>
             </label>
             <input
               type="text"
@@ -171,7 +197,9 @@ const NewMemberForm = () => {
               value={formData.name}
               onChange={handleInputChange}
               placeholder="Enter your full name"
-              className="w-full py-4 px-5 bg-white/8 border-2 border-white/20 rounded-xl text-white text-base outline-none focus:border-blue-400 focus:bg-white/12 placeholder:text-white/50"
+              className={`w-full py-4 px-5 bg-white/8 border-2 rounded-xl text-white text-base outline-none focus:border-blue-400 focus:bg-white/12 placeholder:text-white/50 ${
+                isFieldMissing('Full Name') ? 'border-red-500/70' : 'border-white/20'
+              }`}
               required
             />
           </div>
@@ -179,13 +207,15 @@ const NewMemberForm = () => {
           {/* Position */}
           <div className="mb-6">
             <label className="block text-gray-200 text-sm font-medium mb-2 uppercase tracking-wide">
-              Position
+              Position <span className="text-red-400">*</span>
             </label>
             <select
               name="role"
               value={formData.role}
               onChange={handleInputChange}
-              className="w-full py-4 px-5 bg-white/8 border-2 border-white/20 rounded-xl text-white text-base outline-none focus:border-blue-400 focus:bg-white/12"
+              className={`w-full py-4 px-5 bg-white/8 border-2 rounded-xl text-white text-base outline-none focus:border-blue-400 focus:bg-white/12 ${
+                isFieldMissing('Position') ? 'border-red-500/70' : 'border-white/20'
+              }`}
               required
             >
               <option value="" disabled>What's your position</option>
@@ -210,14 +240,13 @@ const NewMemberForm = () => {
               onChange={handleInputChange}
               placeholder="Enter a tagline"
               className="w-full py-4 px-5 bg-white/8 border-2 border-white/20 rounded-xl text-white text-base outline-none focus:border-blue-400 focus:bg-white/12 placeholder:text-white/50"
-              required
             />
           </div>
 
           {/* GitHub */}
           <div className="mb-6">
             <label className="block text-gray-200 text-sm font-medium mb-2 uppercase tracking-wide">
-              Github Link 🔗
+              Github Link 🔗 <span className="text-red-400">*</span>
             </label>
             <input
               type="text"
@@ -225,7 +254,9 @@ const NewMemberForm = () => {
               value={formData.githubURL}
               onChange={handleInputChange}
               placeholder="Enter your github profile link"
-              className="w-full py-4 px-5 bg-white/8 border-2 border-white/20 rounded-xl text-white text-base outline-none focus:border-blue-400 focus:bg-white/12 placeholder:text-white/50"
+              className={`w-full py-4 px-5 bg-white/8 border-2 rounded-xl text-white text-base outline-none focus:border-blue-400 focus:bg-white/12 placeholder:text-white/50 ${
+                isFieldMissing('GitHub Link') ? 'border-red-500/70' : 'border-white/20'
+              }`}
               required
             />
           </div>
@@ -233,7 +264,7 @@ const NewMemberForm = () => {
           {/* LinkedIn */}
           <div className="mb-6">
             <label className="block text-gray-200 text-sm font-medium mb-2 uppercase tracking-wide">
-              LinkedIn Link 🔗
+              LinkedIn Link 🔗 <span className="text-red-400">*</span>
             </label>
             <input
               type="url"
@@ -241,7 +272,9 @@ const NewMemberForm = () => {
               value={formData.linkedInURL}
               onChange={handleInputChange}
               placeholder="Enter your linkedin profile link"
-              className="w-full py-4 px-5 bg-white/8 border-2 border-white/20 rounded-xl text-white text-base outline-none focus:border-blue-400 focus:bg-white/12 placeholder:text-white/50"
+              className={`w-full py-4 px-5 bg-white/8 border-2 rounded-xl text-white text-base outline-none focus:border-blue-400 focus:bg-white/12 placeholder:text-white/50 ${
+                isFieldMissing('LinkedIn Link') ? 'border-red-500/70' : 'border-white/20'
+              }`}
               required
             />
           </div>
@@ -258,7 +291,6 @@ const NewMemberForm = () => {
                 accept="image/*"
                 onChange={handleFileChange}
                 className="opacity-0 absolute -z-10"
-                required
               />
               <label
                 htmlFor="profile-image"

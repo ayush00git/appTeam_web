@@ -82,7 +82,7 @@ const OurTeam = () => {
     const categories = {
       alumni: { title: 'Alumni', members: [], priority: 1 },
       leadership: { title: 'Leadership Team', members: [], priority: 2 },
-      coordinators: { title: 'Club Coordinators', members: [], priority: 3 },
+      coordinator: { title: 'Club Coordinator', members: [], priority: 3 },
       executives: { title: 'Executives', members: [], priority: 4 },
       volunteers: { title: 'Volunteers', members: [], priority: 5 }
     };
@@ -95,7 +95,7 @@ const OurTeam = () => {
       } else if (role.includes('secretary') || role.includes('convener')) {
         categories.leadership.members.push(member);
       } else if (role.includes('coordinator')) {
-        categories.coordinators.members.push(member);
+        categories.coordinator.members.push(member);
       } else if (role.includes('executive')) {
         categories.executives.members.push(member);
       } else if (role.includes('volunteer')) {

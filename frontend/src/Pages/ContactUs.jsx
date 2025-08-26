@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
+import ReviewsSection from '../components/ReviewSection';
 
 export default function ContactForm() {
   const [formData, setFormData] = useState({
@@ -188,6 +189,7 @@ export default function ContactForm() {
           </div>
         )}
       </div> */}
+      <ReviewsSection />
 
       <style jsx>{`
         .text-shadow {
