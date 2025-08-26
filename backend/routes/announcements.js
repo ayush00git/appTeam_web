@@ -4,8 +4,12 @@ const router = express.Router()
 const announcement = require("../models/announcement")
 
 router.get('/', async(req, res) => {
-    const announcements = await announcement.find({}).sort({createdAt : -1})
-    return res.json({ announcements });
+    try {
+        const announcements = await announcement.find({}).sort({createdAt : -1})
+        return res.json({ announcements });
+    } catch (error) {
+        return res.status(400).json({ message: `${error}` })        
+    }
 })
 
 router.post(`/admin_only/${process.env.ROUTE_SECRET}`, async(req, res) => {

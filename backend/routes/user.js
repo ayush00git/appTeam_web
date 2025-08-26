@@ -1,21 +1,38 @@
 const express = require("express")
 const router = express.Router()
-const contact = require('../models/contact')
+const contact = require('../models/contact');
+const Member = require("../models/member");
 
 router.get('/', (req, res) => {
-    return res.render("home")
+    try {
+        return res.status(200).json({ message: 'HomePage loaded' });
+    } catch (error) {
+        return res.status(500).json({ message: `Error: ${error}` })
+    }
 })
 
 router.get('/aboutUs', (req, res) => {
-    return res.render("aboutUs")
-})
-
-router.get('/projects', (req, res) => {
-    return res.render("projects")
+    try {
+        return res.status(200).json({ message: 'About Us Page loaded' });
+    } catch (error) {
+        return res.status(500).json({ message: `Error: ${error}` })
+    }
 })
 
 router.get('/events', (req, res) => {
-    return res.render("events")
+    try {
+        return res.status(200).json({ message: 'Events page loaded' });
+    } catch (error) {
+        return res.status(500).json({ message: `Error: ${error}` })
+    }
+})
+
+router.get('/projects', (req, res) => {
+    try {
+        return res.status(200).json({ message: 'projects page loaded' });
+    } catch (error) {
+        return res.status(500).json({ message: `Error: ${error}` })
+    }
 })
 
 router.post('/contactUs', async(req, res) => {
@@ -37,8 +54,8 @@ router.post('/contactUs', async(req, res) => {
 
 router.get('/contactUs', async(req, res) => {
     try {
-        const contacts = await contact.find({}).sort({ createdAt: -1 });
-        return res.status(200).json({ success: true, contacts });
+        const reviews = await contact.find({}).sort({ createdAt: -1 });
+        return res.status(200).json({ success: true, reviews });
     } catch (err) {
         return res.status(500).json({ success: false, message: 'Failed to fetch contacts.' });
     }

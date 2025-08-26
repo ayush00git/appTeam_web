@@ -18,7 +18,7 @@ const memberSchema = new Schema(
       required: true,
       enum: [
         "Alumni",
-        "Club coordinator",
+        "Club Coordinator",
         "Convener",
         "Club Secretary",
         "Executive",
@@ -35,10 +35,6 @@ const memberSchema = new Schema(
     githubURL: {
       type: String,
       required: true,
-    },
-    createdBy: {
-      type: Schema.Types.ObjectId,
-      ref: "users",
     },
   },
   { timestamps: true }
