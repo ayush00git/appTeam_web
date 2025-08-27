@@ -1,20 +1,27 @@
-const { Schema, model } = require("mongoose") 
+const { Schema, model } = require("mongoose");
 
-const annSchema = new Schema({
-    title:{
-        type: String,
-        required: true
+const annSchema = new Schema(
+  {
+    title: {
+      type: String,
+      required: true,
     },
     content: {
-        type: String,
-        required: true
+      type: String,
+      required: true,
     },
     date: {
-        type: String,
-        required: true
-    }
-}, {timestamps: true})
+      type: String,
+      required: true,
+    },
+    isActive: {
+      type: String,
+      enum: ["Active", "Inactive"], // only these two values allowed
+      default: "Active",
+    },
+  },
+  { timestamps: true }
+);
 
-const announcement = model('announcements', annSchema)
-
-module.exports = announcement
+const announcement = model("announcements", annSchema);
+module.exports = announcement;

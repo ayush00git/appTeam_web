@@ -16,9 +16,10 @@ const ReviewsSection = () => {
       
       const data = await response.json();
       
-      // Handle the specific API response structure
+      // Handle the specific API response structure and filter for verified reviews only
       if (data && Array.isArray(data.reviews)) {
-        setReviews(data.reviews);
+        const verifiedReviews = data.reviews.filter(review => review.verified === true);
+        setReviews(verifiedReviews);
       } else {
         console.warn('Unexpected API response format:', data);
         setReviews([]);
@@ -53,7 +54,7 @@ const ReviewsSection = () => {
 
   if (loading) {
     return (
-      <div className="font-sans min-h-screen p-5 select-none" style={{ backgroundColor: '#140b29' }}>
+      <div className="font-sans min-h-screen p-5 select-none bg-[#140b29]">
         <div className="max-w-4xl mx-auto">
           <h1 className="text-center text-white text-3xl font-semibold mb-10 text-shadow">
             Recent Reviews & Queries
@@ -69,7 +70,7 @@ const ReviewsSection = () => {
 
   if (error) {
     return (
-      <div className="font-sans min-h-screen p-5 select-none" style={{ backgroundColor: '#140b29' }}>
+      <div className="font-sans min-h-screen p-5 select-none bg-[#140b29]">
         <div className="max-w-4xl mx-auto">
           <h1 className="text-center text-white text-3xl font-semibold mb-10 text-shadow">
             Recent Reviews & Queries
@@ -91,7 +92,7 @@ const ReviewsSection = () => {
   }
 
   return (
-    <div className="font-sans min-h-screen p-5 select-none" style={{ backgroundColor: '#140b29' }}>
+    <div className="font-sans min-h-screen p-5 select-none bg-[#140b29]">
       <div className="max-w-full mx-auto px-4">
         <h1 className="text-center text-white text-3xl font-semibold mb-10 text-shadow">
           Recent Reviews & Queries
@@ -99,7 +100,7 @@ const ReviewsSection = () => {
         
         {!Array.isArray(reviews) || reviews.length === 0 ? (
           <div className="text-center">
-            <p className="text-white/70 text-lg">No reviews available at the moment.</p>
+            <p className="text-white/70 text-lg">No verified reviews available at the moment.</p>
           </div>
         ) : (
           <div className="grid gap-6 grid-cols-2">
@@ -118,9 +119,16 @@ const ReviewsSection = () => {
                     {review.email}
                   </p>
                 </div>
-                <span className="text-white/50 text-xs font-medium px-2 py-1 rounded-full bg-white/5">
-                  {formatTimestamp(review.createdAt)}
-                </span>
+                <div className="flex flex-col items-end gap-1">
+                  <span className="text-white/50 text-xs font-medium px-2 py-1 rounded-full bg-white/5">
+                    {formatTimestamp(review.createdAt)}
+                  </span>
+                  {/* Verified badge */}
+                  <div className="flex items-center gap-1 text-green-300 text-xs font-medium px-2 py-1 rounded-full bg-green-400/10 border border-green-400/20">
+                    <div className="w-1.5 h-1.5 bg-green-400 rounded-full"></div>
+                    Verified
+                  </div>
+                </div>
               </div>
 
               {/* Query Section */}

@@ -10,6 +10,8 @@ import AnnouncementsPage from "./Pages/Announcements";
 import AnnouncementForm from "./Pages/Announcement_Form";
 import NotFound from "./Pages/NotFound";
 import HomePage from "./Pages/HomePage";
+import AdminOnly from "./components/AdminOnly";
+import Projects from "./Pages/Projects";
 
 function App() {
   return (
@@ -25,6 +27,9 @@ function App() {
           <Route path="/contactUs" element={<ContactForm />} />
           <Route path="/announcements" element={<AnnouncementsPage />} />
           <Route path={`/announcements/admin_only/${import.meta.env.VITE_ROUTE_SECRET}`} element={<AnnouncementForm />} />
+          <Route path={'/member/admin_only/newMember'} element={<AdminOnly />}/>
+          <Route path={'/announcements/admin_only'} element={<AdminOnly />}/>
+          <Route path={'/projects'} element={<Projects />}/>
           <Route path="*" element={<NotFound />} />
         </Routes>
         <Footer />

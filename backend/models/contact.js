@@ -15,7 +15,7 @@ const contactSchema = new Schema({
     },
     response: {
         type: String,
-        default: null,
+        default: "Response pending",
     },
     verified: {
         type: Boolean,
