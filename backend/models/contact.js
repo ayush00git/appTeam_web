@@ -12,6 +12,14 @@ const contactSchema = new Schema({
     query: {
         type: String,
         required: true
+    },
+    response: {
+        type: String,
+        default: null,
+    },
+    verified: {
+        type: Boolean,
+        default: false,
     }
 }, {timestamps: true})
 

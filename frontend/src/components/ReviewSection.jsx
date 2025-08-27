@@ -146,7 +146,7 @@ const ReviewsSection = () => {
                 </div>
                 <div className="bg-gradient-to-br from-blue-500/10 to-purple-600/10 rounded-xl p-4 border border-blue-400/20">
                   <p className="text-blue-100 text-sm leading-relaxed">
-                    Thanks for the query we'll respond soon
+                    {review.response}
                   </p>
                 </div>
               </div>

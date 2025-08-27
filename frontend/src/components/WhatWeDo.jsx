@@ -84,7 +84,7 @@ const WhatWeDo = () => {
           <div className="lg:sticky lg:top-0 lg:w-1/2 h-screen flex items-center justify-center bg-[#140b29] flex-shrink-0 z-10">
             <div className="relative w-80 h-[420px] flex items-center justify-center">
               {/* Purple shape background */}
-              <div className="absolute w-80 h-[420px] bg-purple-300 purple-shape -rotate-12 z-10"></div>
+              {/* <div className="absolute w-80 h-[420px] bg-purple-300 purple-shape -rotate-12 z-10"></div> */}
               
               {/* Stacked images */}
               {sectionsData.current.map((section, idx) => (
@@ -108,7 +108,7 @@ const WhatWeDo = () => {
             {/* Header */}
             <div className="h-screen flex items-center justify-center px-8 lg:px-16">
               <h1 
-                className="gasoek-font font-normal text-center text-purple-300 tracking-wide uppercase leading-tight"
+                className="gasoek-font font-normal text-center text-[#a594f9] tracking-wide uppercase leading-tight"
                 style={{ fontSize: 'clamp(3rem, 5vw, 5rem)' }}
               >
                 WHAT WE DO
@@ -123,7 +123,7 @@ const WhatWeDo = () => {
                   index === activeSection ? 'opacity-100 transform-none' : 'opacity-30 translate-y-5'
                 }`}
               >
-                <h2 className="text-4xl font-bold mb-8 text-purple-300 leading-tight">
+                <h2 className="text-4xl font-bold mb-8 text-[#a594f9] leading-tight">
                   {section.title}
                 </h2>
                 <p className="text-lg leading-relaxed text-gray-200 mb-12 max-w-[90%] font-normal">
@@ -133,7 +133,7 @@ const WhatWeDo = () => {
                     href={section.link} 
                     target="_blank" 
                     rel="noopener noreferrer"
-                    className="text-purple-300 hover:text-purple-200 transition-colors inline-flex items-center mt-4 group"
+                    className="text-[#a594f9] hover:text-purple-200 transition-colors inline-flex items-center mt-4 group"
                   >
                     <span className="mr-2">
                       {section.id === 'hack-on-hills' ? 'HACKONHILLS-7.0' : 
