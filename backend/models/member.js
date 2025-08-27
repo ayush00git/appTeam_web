@@ -21,7 +21,7 @@ const memberSchema = new Schema(
         "Club Coordinator",
         "Convener",
         "Club Secretary",
-        "Executive",
+        "Executive Member",
         "Volunteer",
       ],
     },

@@ -1,15 +1,15 @@
-import { useState, useEffect, useRef } from 'react';
-import ReviewsSection from '../components/ReviewSection';
+import { useState, useEffect, useRef } from "react";
+import ReviewsSection from "../components/ReviewSection";
 
 export default function ContactForm() {
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    query: ''
+    name: "",
+    email: "",
+    query: "",
   });
   const [contacts, setContacts] = useState([]);
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [message, setMessage] = useState('');
+  const [message, setMessage] = useState("");
   const messageTimeoutRef = useRef(null);
 
   // Fetch contacts on component mount
@@ -19,51 +19,52 @@ export default function ContactForm() {
 
   const fetchContacts = async () => {
     try {
-      const response = await fetch('http://localhost:8000/contactUs');
+      const response = await fetch("http://localhost:8000/contactUs");
       const data = await response.json();
       if (data.success) {
         setContacts(data.contacts);
       }
     } catch (error) {
-      console.error('Error fetching contacts:', error);
+      console.error("Error fetching contacts:", error);
     }
-  };  const handleChange = (e) => {
+  };
+  const handleChange = (e) => {
     setFormData({
       ...formData,
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     });
   };
 
   const handleSubmit = async () => {
     setIsSubmitting(true);
-    setMessage('');
+    setMessage("");
     if (messageTimeoutRef.current) clearTimeout(messageTimeoutRef.current);
 
     try {
-      const response = await fetch('http://localhost:8000/contactUs', {
-        method: 'POST',
+      const response = await fetch("http://localhost:8000/contactUs", {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
-        body: JSON.stringify(formData)
+        body: JSON.stringify(formData),
       });
 
       const data = await response.json(); // Always parse JSON
 
       if (response.ok && data.success) {
-        setMessage(data.message || 'Message sent successfully!');
-        setFormData({ name: '', email: '', query: '' });
+        setMessage(data.message || "Message sent successfully!");
+        setFormData({ name: "", email: "", query: "" });
         fetchContacts(); // Optionally refresh the queries list
       } else {
-        setMessage(data.message || 'Failed to send message. Please try again.');
+        setMessage(data.message || "Failed to send message. Please try again.");
       }
     } catch (error) {
-      setMessage('Error sending message. Please check your connection.');
-      console.error('Error:', error);
+      setMessage("Error sending message. Please check your connection.");
+      console.error("Error:", error);
     }
 
     setIsSubmitting(false);
-    messageTimeoutRef.current = setTimeout(() => setMessage(''), 4000);
+    messageTimeoutRef.current = setTimeout(() => setMessage(""), 4000);
   };
 
   // Clear timeout on unmount
@@ -81,18 +82,21 @@ export default function ContactForm() {
           Contact Us
         </h1>
         {message && (
-          <div className={`mb-6 p-3 rounded text-center ${
-            message.includes('success') 
-              ? 'text-green-300' 
-              : 'text-red-300'
-          }`}>
+          <div
+            className={`mb-6 p-3 rounded text-center ${
+              message.includes("success") ? "text-green-300" : "text-red-300"
+            }`}
+          >
             {message}
           </div>
         )}
         <div className="space-y-5">
           {/* Name */}
           <div className="mb-6">
-            <label htmlFor="name" className="block text-gray-200 text-sm font-medium mb-2 uppercase tracking-wide">
+            <label
+              htmlFor="name"
+              className="block text-gray-200 text-sm font-medium mb-2 uppercase tracking-wide"
+            >
               Name
             </label>
             <input
@@ -108,7 +112,10 @@ export default function ContactForm() {
           </div>
           {/* Email */}
           <div className="mb-6">
-            <label htmlFor="email" className="block text-gray-200 text-sm font-medium mb-2 uppercase tracking-wide">
+            <label
+              htmlFor="email"
+              className="block text-gray-200 text-sm font-medium mb-2 uppercase tracking-wide"
+            >
               Email Address
             </label>
             <input
@@ -124,7 +131,10 @@ export default function ContactForm() {
           </div>
           {/* Query */}
           <div className="mb-6">
-            <label htmlFor="query" className="block text-gray-200 text-sm font-medium mb-2 uppercase tracking-wide">
+            <label
+              htmlFor="query"
+              className="block text-gray-200 text-sm font-medium mb-2 uppercase tracking-wide"
+            >
               Query
             </label>
             <textarea
@@ -136,7 +146,7 @@ export default function ContactForm() {
               required
               rows="5"
               className="w-full py-4 px-5 bg-white/8 border-2 border-white/20 rounded-xl text-white text-base outline-none focus:border-blue-400 focus:bg-white/12 placeholder:text-white/50 resize-y"
-              style={{ minHeight: '120px' }}
+              style={{ minHeight: "120px" }}
             />
           </div>
           {/* Submit Button */}
@@ -144,9 +154,10 @@ export default function ContactForm() {
             type="button"
             onClick={handleSubmit}
             disabled={isSubmitting}
-            className="w-full py-4 bg-gradient-to-r from-blue-400 to-purple-600 border-none rounded-xl text-white text-base font-semibold uppercase tracking-wide mt-3 cursor-pointer transition-all duration-300 hover:from-blue-500 hover:to-purple-700 hover:shadow-lg disabled:opacity-60 disabled:cursor-not-allowed"
+            className="w-full py-4 bg-[#231446] border-2 rounded-xl text-white text-base font-semibold uppercase tracking-wide mt-3 cursor-pointer transition-all duration-300 border-[#a594f9]
+hover:bg-[#9d8bfa] disabled:opacity-60 disabled:cursor-not-allowed"
           >
-            {isSubmitting ? 'Sending...' : 'Send Message'}
+            {isSubmitting ? "Sending..." : "Send Message"}
           </button>
         </div>
       </div>

@@ -116,7 +116,7 @@ const AnnouncementsSection = () => {
           </h1>
           <button 
             onClick={() => navigate('/announcements/admin_only')}
-            className="py-4 px-8 bg-[#140b29] border-2 border-purple-500 rounded-xl text-white text-sm font-semibold uppercase tracking-wide cursor-pointer transition-all duration-300 hover:bg-[#351f69] flex items-center gap-2"
+            className="py-4 px-8 bg-[#231446] border-2 border-[#a594f9] rounded-xl text-white text-sm font-semibold uppercase tracking-wide cursor-pointer transition-all duration-300 hover:bg-[#9d8bfa] flex items-center gap-2"
           >
             Make an Announcement
           </button>
@@ -200,7 +200,7 @@ const AnnouncementsSection = () => {
           <button 
             onClick={fetchAnnouncements}
             disabled={loading}
-            className="py-3 px-8 bg-gradient-to-r from-purple-400 to-pink-600 border-none rounded-xl text-white text-sm font-semibold uppercase tracking-wide cursor-pointer transition-all duration-300 hover:from-purple-500 hover:to-pink-700 hover:shadow-lg disabled:opacity-60 disabled:cursor-not-allowed"
+            className="py-3 px-8 border-[#a594f9] bg-[#231446] border-2 rounded-xl text-white text-sm font-semibold uppercase tracking-wide cursor-pointer transition-all duration-300 hover:bg-[#9d8bfa] hover:shadow-lg disabled:opacity-60 disabled:cursor-not-allowed"
           >
             {loading ? 'Loading...' : 'Refresh Announcements'}
           </button>

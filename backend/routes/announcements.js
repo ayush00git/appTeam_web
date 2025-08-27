@@ -20,7 +20,7 @@ router.post(`/admin_only/${process.env.ROUTE_SECRET}`, async(req, res) => {
         }
         await announcement.create({
             title,
-            date,
+            date: new Date(),
             content
         });
         return res.status(201).json({ success: true, message: 'Announcement posted successfully!' });

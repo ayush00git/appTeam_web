@@ -156,7 +156,7 @@ const FAQ = () => {
             <p className="text-purple-200 text-lg mb-4">
               Still have questions?
             </p>
-            <button className="bg-purple-600 hover:bg-purple-700 text-white font-semibold py-3 px-8 rounded-full transition-colors duration-300 transform hover:scale-105"
+            <button className="bg-[#a594f9] hover:bg-[rgb(147,129,236)] text-white font-semibold py-3 px-8 rounded-full transition-colors duration-300 transform hover:scale-105"
             onClick={() => navigate('/contactUs')}>
               Contact Us
             </button>

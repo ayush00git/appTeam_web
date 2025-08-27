@@ -176,7 +176,7 @@ const ReviewsSection = () => {
           <button 
             onClick={fetchReviews}
             disabled={loading}
-            className="py-3 px-8 bg-gradient-to-r from-blue-400 to-purple-600 border-none rounded-xl text-white text-sm font-semibold uppercase tracking-wide cursor-pointer transition-all duration-300 hover:from-blue-500 hover:to-purple-700 hover:shadow-lg disabled:opacity-60 disabled:cursor-not-allowed"
+            className="py-3 px-8 bg-[#231446] border-2 border-[#a594f9] rounded-xl text-white text-sm font-semibold uppercase tracking-wide cursor-pointer transition-all duration-300 hover:bg-[#a594f9] hover:shadow-lg disabled:opacity-60 disabled:cursor-not-allowed"
           >
             {loading ? 'Loading...' : 'Refresh Reviews'}
           </button>
